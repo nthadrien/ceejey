@@ -1,0 +1,213 @@
+---
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
+import GenHeader from "@components/headers/GenHeader.astro";
+import Layout from "@layouts/Layout.astro";
+import type { ACTION_ERROR_CODES } from "astro:actions";
+
+
+
+const headerInfo = {
+	description : "",
+	title: "Checkout Page",
+	keywords:[],
+};
+---
+
+<Layout {...headerInfo}>
+
+	<BreadCrumb />
+	<GenHeader {...headerInfo} />
+
+    <main class="container-xxl mx-auto row g-3">
+
+
+		<section class="col-md-5 col-lg-4">
+
+			<h4 class="text-swanky">Shopping Cart Cart</h4>
+
+
+			<ul class="list-unstyled p-0">
+
+				{[1,2,3].map( item => <li class="border-bottom d-flex justify-content-between align-items-center gap-2 position-relative p-2">
+
+					<div style="height: 64px;width: 64px;" class="col-3 text-bg-dark">img</div>
+
+					<button style="right:5px;top:0px;" class="btn btn-sm position-absolute">
+						<i class="fw-bolder bi bi-x-lg text-danger"></i>
+					</button>
+
+					<div class="col-9 lh-sm">
+
+						<h6 class="text-pacifico">Name</h6>
+						<p>Lipstick coco chanel , Color(blue) </p>
+
+						<div class="d-flex justify-content-between align-items-center gap-2">
+							<span>
+								qty:    
+								<button class="btn btn-sm"> - </button>  
+									4 
+								<button class="btn btn-sm">+</button> 		
+							</span> 
+							
+							<span>price: $300</span>
+						</div>
+					</div>
+
+				</li>)}
+
+			</ul>
+
+
+			<div>
+				<p>Total Items Price : $400,5</p>
+				<p>Shipping: ---</p>
+				<p>Total Price: $3000,4</p>
+			</div>
+
+			<div class="form-floating col-12">
+				<input class="form-control" type="text" name="promo" placeholder=""  required/>
+				<label class="form-label ms-2" for="promo">Promo Code</label>
+			</div>
+
+
+
+
+		</section>
+
+
+
+		<!-- customer form -->
+
+		<section class="col-md-7 col-lg-8">
+
+			<h4 class="text-swanky">Customer Information</h4>
+
+			<form class="row g-3">
+
+				<div class="form-floating col-12">
+					<input class="form-control" type="text" name="contact" placeholder="example@email.com"  required/>
+					<label class="form-label ms-2" for="contact">Email</label>
+				</div>
+
+				<h5 class="col-12 text-swanky">Customer ID</h5>
+
+				<div class="form-floating col-md-6">
+					<input class="form-control" type="text" name="firstName" placeholder="first name"  required/>
+					<label class="form-label ms-2" for="contact">First Name</label>
+				</div>
+
+				<div class="form-floating col-md-6">
+					<input class="form-control" type="text" name="lastName" placeholder="Last Name"  required/>
+					<label class="form-label ms-2" for="contact">First Name</label>
+				</div>
+
+
+				<h5 class="col-12 text-swanky">Customer Address</h5>
+
+				<div class="col-md-4">
+					<div class="form-floating">
+					  <select class="form-select" name="country">
+						<option value="germany">Germany</option>
+						<option value="cameroon">Cameroon</option>
+						<option value="france">France</option>
+						<option value="others">Others</option>
+					  </select>
+					  <label for="country">Country</label>
+					</div>
+				  </div>
+
+				<div class="form-floating col-md-4">
+					<input class="form-control" type="text" name="city" placeholder="city"  required/>
+					<label class="form-label ms-2" for="city">State / Town </label>
+				</div>
+
+
+				<div class="form-floating col-md-4">
+					<input class="form-control" type="text" name="postal" placeholder="Last Name"  required/>
+					<label class="form-label ms-2" for="postal">Zip / Postal code</label>
+				</div>
+
+				<div class="form-floating col-12">
+					<input class="form-control" type="text" name="phone" placeholder="+91 xxx" />
+					<label class="form-label ms-2" for="contact">Phone Number (Optional)</label>
+				</div>
+
+				
+
+				<h5 class="col-12 text-swanky">Payment Details</h5>
+
+
+				<div class="input-group col-12">
+					<select style="max-width: 200px;" class="form-select" name="cardType" required>
+						<option selected>Please choose...</option>
+						<option value="paypal">PayPal</option>
+						<option value="master">Master Card</option>
+					</select>
+					<div class="form-floating">
+					  <input type="text" class="form-control" id="cardNumber" placeholder="Username">
+					  <label for="cardNumber">Credit Card Number</label>
+					</div>
+				  </div>
+
+				  <div class="form-floating col-md-6">
+					<input class="form-control" type="password" name="cardPassword" placeholder="*******"  required/>
+					<label class="form-label ms-2" for="cardPassword">Security Code </label>
+				</div>
+
+
+				<div class="form-floating col-md-6">
+					<input class="form-control" type="text" name="expDate" placeholder="Last Name"  required/>
+					<label class="form-label ms-2" for="expDate">Expiration Date</label>
+				</div>
+
+				<h5 class="col-12 text-swanky">Shedule Delivery Dates</h5>
+
+				<div class="form-floating col-12">
+					<input class="form-control" type="text" name="deliveryDates" placeholder=""  required/>
+					<label class="form-label ms-2" for="expDate">Delivery Dates</label>
+				</div>
+
+
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" name="terms-read">
+					<label class="form-check-label" for="terms-read">
+					  Yes I read the refund policy, with terms & conditions.
+					</label>
+				</div>
+
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="cart-ok">
+					<label class="form-check-label" for="cart-ok">
+					  Yes I am ok with the shopping Cart.
+					</label>
+				</div>
+
+
+				<button type="submit" class="btn btn-primary">
+					Order 
+				</button>
+
+
+
+			</form>
+
+		</section>
+
+
+		
+
+	</main>
+
+</Layout>
+
+<style>
+	.form-label {
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+
+	input, select, .btn {
+		border-radius: 0;
+	}
+</style>

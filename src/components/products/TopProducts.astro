@@ -1,0 +1,26 @@
+---
+import ProductCard from "@components/cards/ProductCard.astro";
+import { getCollection } from "astro:content"
+
+
+
+const best = await getCollection("products");
+
+const sorted = best.sort( (a,b) =>  a.data.reviews.length - b.data.reviews.length ).slice(0,4);
+---
+
+
+<section class="container-xl mx-auto py-3">
+
+    <h6 class="my-3">Top Products</h6>
+
+
+    <ul class="list-unstyled row row-cols-2 row-cols-lg-4">
+        {
+            sorted.map( item => <li class="col border">
+                <h5>{item.name}</h5>
+            </li>)
+        }
+    </ul>
+
+</section>

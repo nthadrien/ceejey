@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import BlogCard from "../../components/cards/BlogCard.astro";
+import type { CollectionEntry } from "astro:content";
+
+
+
+    const headerInfo = {
+        description : "Home page for show casing many things.",
+        title: "Home Page",
+        keywords:[],
+    };
+
+    export const getStaticPaths = (async ({ paginate }) => {
+    const posts = await getCollection('blog');
+        return paginate(posts,{ pageSize : 12 })
+    }) satisfies GetStaticPaths;
+
+    type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+        
+    const { page } = Astro.props;
+
+---
+
+<Layout {...headerInfo}>
+
+    <header style="min-height: max(30vh,320px);" class="nav column justify-content-center align-items-center text-center">
+        <h1 class="text-swanky">Blog </h1>
+    </header>
+
+
+    <main class="container mx-auto g-3 g-lg-4 py-4 row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+
+        {page.data?.map( (post:CollectionEntry<"blog">) => <aside class="col">
+            <BlogCard post={post} />
+        </aside>)}
+
+    </main>
+
+
+    <!-- Pagination plog -->
+    <nav aria-label="list pagination" class="container mx-auto py-3 nav gap-2 justify-content-center align-items-center">
+
+        <a aria-disabled={page.url.first? "false":"true"} class={`btn border-0 ${page.url.first? "":"visually-hidden"}`} href={page.url.first}><i class="bi bi-chevron-compact-left"></i> </a>
+
+        {page.url.prev ? <a class="btn" href={page.url.prev}> {page.url.prev.slice(-2).replace("-","")}  </a> : ""}
+        
+        <a class="btn text-bg-primary" href={page.url.next}>
+            {page.url.current !== page.url.first ? page.url.current.slice(-2).replace("-","") : 1 }
+        </a>
+
+        {page.url.next ? <a class="btn" href={page.url.next}> {page.url.next.slice(-2).replace("-","")}  </a> : ""}
+
+        <a aria-disabled={page.url.last? "false":"true"} class={`btn border-0 ${page.url.last? "":"visually-hidden"}`} href={page.url.last}>
+            <i class="bi bi-chevron-compact-right"></i> 
+        </a>
+    
+    </nav>
+
+</Layout>

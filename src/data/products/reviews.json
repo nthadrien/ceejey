@@ -1,0 +1,44 @@
+{
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Sarah J.",
+        "productId": 1,
+        "rating": 5,
+        "description": "Amazing volume!",
+        "date": "2024-10-26T10:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "name": "Mike L.",
+        "productId": 1,
+        "rating": 4,
+        "description": "Good for daily use.",
+        "date": "2024-10-26T11:00:00.000Z"
+      },
+      {
+        "id": 3,
+        "name": "Emily R.",
+        "productId": 2,
+        "rating": 5,
+        "description": "Love the color!",
+        "date": "2024-10-26T12:00:00.000Z"
+      },
+      {
+        "id": 4,
+        "name": "David K.",
+        "productId": 3,
+        "rating": 4,
+        "description": "Good coverage, but a bit heavy.",
+        "date": "2024-10-26T13:00:00.000Z"
+      },
+      {
+        "id": 5,
+        "name": "Chloe T.",
+        "productId": 5,
+        "rating": 5,
+        "description": "Stunning colors!",
+        "date": "2024-10-26T14:00:00.000Z"
+      }
+    ]
+}

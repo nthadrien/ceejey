@@ -1,0 +1,25 @@
+---
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
+import CarouselHeader from "@components/headers/CarouselHeader.astro";
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import ShopPage from "@components/products/ShopPage";
+import TopProducts from "@components/products/TopProducts.astro";
+
+const headerInfo = {
+    description : "Home page for show casing many things.",
+    title: "Shop Page",
+    keywords:[],
+};
+
+const products = await getCollection("products");
+
+
+---
+
+<Layout {...headerInfo}>  
+    <CarouselHeader />
+    <BreadCrumb />
+    <ShopPage client:load />
+    <TopProducts />
+</Layout>

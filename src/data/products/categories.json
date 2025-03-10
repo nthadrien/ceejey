@@ -1,0 +1,19 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "name": "Eye Makeup",
+        "description": "Everything for your eyes"
+      },
+      {
+        "id": 2,
+        "name": "Lip Makeup",
+        "description": "All your lip needs"
+      },
+      {
+        "id": 3,
+        "name": "Face Makeup",
+        "description": "Foundations, concealers and more"
+      }
+    ]
+}

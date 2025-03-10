@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const headerInfo = {
+	description : "Home page for show casing many things.",
+	title: "About",
+	keywords:[],
+};
+---
+
+<Layout {...headerInfo}>
+
+<main>
+
+    <header style="min-height: max(30vh,320px);" class="nav column justify-content-center align-items-center text-center">
+
+        <h1 class="text-swanky">About Me??</h1>
+
+    </header>
+
+
+    <section id="about" class="container p-2 py-3 mx-auto row row-cols-lg-2 g-2 align-items-center justify-content-center">
+
+        <aside class="text-center col">
+            <h2 class="text-pacifico text-primary">Who we Are</h2>
+
+            <p>
+                Recusandae enim eligendi libero magni odio consectetur nobis aliquam velit qui dignissimos hic, neque aspernatur a officia deserunt ullam molestiae. Cumque, non.
+            </p>
+            <p>
+                Aliquam aperiam nisi accusamus delectus minima soluta nobis maxime unde sint esse. Vel minima earum modi necessitatibus deserunt molestiae numquam officia odio.
+            </p>
+        </aside>
+
+        <img src="/images/website/about-1.jpg" loading="lazy" class="col rounded-4 object-fit-cover" alt="b-hair">
+
+    </section>
+
+
+    <section id="services" class="container-fluid bg-body text-center py-3">
+
+        <h2 class="text-pacifico text-primary">Our Services</h2>
+
+        <ul class="container-sm g-3 list-unstyled row row-cols-2 row-cols-lg-3 mt-3 mx-auto">
+
+            {[1,2,3,4,5,6].map( service => <li class="text-start">
+                <h4 class="text-swanky"> 
+                    <i class="bi bi-eye  me-2"></i>
+                    Service {service}
+                </h4>
+                <p>
+                    service : Sed perferendis quas rem tenetur saepe delectus consequuntur tempore asperiores nisi quis molestiae, ratione blanditiis similique nobis? Sunt?
+                </p>
+
+            </li> )}
+        </ul>
+    </section>
+
+
+    <section class="container p-2 py-4 mx-auto row row-cols-lg-2 g-2 align-items-center justify-content-center">
+
+        
+
+        <img src="/images/website/index-1.jpg" class="rounded-4 object-fit-cover" alt="b-hair">
+
+        <aside class="text-center">
+            <h2 class="text-pacifico text-primary">Who/ Objectifs I don't know</h2>
+
+            <p>
+                Recusandae enim eligendi libero magni odio consectetur nobis aliquam velit qui dignissimos hic, neque aspernatur a officia deserunt ullam molestiae. Cumque, non.
+            </p>
+
+            <p>
+                Aliquam aperiam nisi accusamus delectus minima soluta nobis maxime unde sint esse. Vel minima earum modi necessitatibus deserunt molestiae numquam officia odio.
+            </p>
+        </aside>
+
+    </section>
+
+
+    <section class="py-3">
+
+        <p class="h2 text-swanky text-center text-primary">F.A.Q </p> 
+        
+
+        <aside style="max-width: 968px;" class="accordion accordion-flush d-flex flex-column gap-2 gap-lg-3 mx-auto" id="faqAccordionFlush">
+
+           {[1,2].map((item,i) =>  <div class="accordion-item bg-body-tertiary shadow-o text-swanky">
+              <h2 class="accordion-header bg-body-tertiary">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${i}`} aria-expanded="false" aria-controls={`#flush-collapse${i}`} >
+                  Accordion Item #{item}
+                </button>
+              </h2>
+              <div id={`flush-collapse${i}`} class="accordion-collapse collapse" data-bs-parent="#faqAccordionFlush">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+              </div>
+            </div>)}
+
+        </aside>
+
+    </section>
+
+</main>  
+</Layout>
+
+
+<style>
+    .accordion-item,
+    .accordion-button {
+        background-color: inherit !important;
+    }
+</style>

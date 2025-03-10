@@ -1,0 +1,25 @@
+---
+import type { ACTION_ERROR_CODES } from 'astro:actions';
+import Layout from '../layouts/Layout.astro';
+
+const headerInfo = {
+	description : "Home page for show casing many things.",
+	title: "Home Page",
+	keywords:[],
+};
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout {...headerInfo}>
+	<h1 class="text-primary text-swanky"> Hello Ceejey</h1>
+
+	<h3 class="text-secondary">Welcome to this website</h3>
+
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+		Placeat earum eos quidem doloremque animi cum esse sapiente aliquid blanditiis? 
+		Illum consectetur placeat reprehenderit cupiditate tenetur? Ab minima fugiat saepe vel.
+	</p>
+</Layout>

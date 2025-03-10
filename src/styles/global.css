@@ -1,0 +1,122 @@
+
+@font-face {
+    font-family: Pacifico;
+    src: url('/fonts/Pacifico-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Swanky;
+    src: url('/fonts/SwankyandMooMoo-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --pry-clr: #a6659b; /* (Dusty Rose-Purple) */
+    --snd-clr: #e9dac1; /* (light sand) */
+    --acn-clr: rgb(194, 178, 128); /* (taupe) */
+    --neutral-clr: #f8f8f8; /* Off white */
+    /* bootstrap variables */
+    --bs-primary: var(--pry-clr) !important;
+    --bs-primary-rgb: 166, 101, 155 !important;
+    
+    --bs-secondary: var(--snd-clr) !important;
+    --bs-secondary-rgb: 233, 218, 193 !important;
+
+    --bs-info: var(--acn-clr) !important;
+    --bs-info-rgb: 194, 178, 128 !important;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background: var(--neutral-clr);
+}
+
+body {
+    font-size: 12px !important;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 14px !important;
+    }
+}
+
+.text-pacifico {
+    font-family: Pacifico;
+}
+
+.text-swanky {
+    font-family: Swanky ,'Courier New', Courier, monospace;
+}
+
+.text-mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.smaller {
+    font-size: smaller;
+}
+
+.small-x {
+    font-size: x-small;
+}
+
+a, a.nav-link, .nav-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.line-clamp-3 {
+    height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.glow-item:has( input:checked ) {
+    background-color: var(--acn-clr);
+    color: var(--neutral-clr);
+    font-weight: bolder;
+}
+
+/* product-card */
+.product-card .options {
+    opacity: 0;
+}
+
+.product-card:hover .options {
+    opacity: 1;
+    transition: all 0.5s linear;
+}
+
+
+/* toast-container */
+#toast {
+    position: fixed;
+    top: 20%;
+    right:5vw;
+    max-width: 600px;
+    opacity: 0.6;
+}
+
+.form-floating label {
+    margin-left: 1rem;
+}
+
+.btn, .form-control, .form-select {
+    border-radius: 0;
+} 

@@ -1,0 +1,93 @@
+---
+import WbLogo from "@components/navbar/WbLogo.astro";
+import { map } from "astro:schema";
+
+const socalLinks: { class: string; link: string }[] = [
+    { class: "facebook", link: "#facebook" },
+    { class: "whatsapp", link: "#facebook" },
+    { class: "telegram", link: "#facebook" },
+];
+
+const pages: { name:string , link:string}[] = [
+    { name:"about" , link:"/about/"},
+    { name:"shop" , link:"/products/"},
+    { name:"Services" , link:"/about#services"},
+    { name:"blog",link:"/blog"}
+];
+
+const categories: string[] = [
+    "Eye Makeup",
+    "Lip Makeup",
+    "Face Makeup",
+    "Skincare",
+    "Haircare",
+];
+
+const brands: string[] = [
+    "Maybelline",
+    "MAC Cosmetics",
+    "Estée Lauder",
+    "NARS",
+    "Stila",
+    "Rare Beauty",
+];
+---
+
+<footer class="container-fluid p-2 d-flex flex-column align-items-center gap-4">
+
+    <hr class="container border-primary" />
+
+    <section
+        class="container-xl row justify-content-between g-2 g-lg-4 text-center text-md-start"
+    >   
+
+        <aside class="col-12 col-lg-4">
+
+
+            <h2>
+                <WbLogo />
+            </h2>
+            <p class="smaller">
+                Nine out of ten doctors recommend Laracasts over competing brands. Come inside, see for yourself, 
+                and massively level up your development skills in the process.
+            </p>
+
+        </aside>
+
+
+        <aside class=" d-none d-md-inline col-md-6 col-lg-2">
+
+            <h4 class="text-swanky">pages</h4>
+
+            <ul class="nav flex-md-column gap-2">
+                {pages.map( item => <li class="nav-item">
+                    <a href={item.link} class="nav-link text-capitalize p-0">categories</a>
+                </li>)}
+            </ul>
+
+        </aside>
+
+        <aside class="col-md-6 col-lg-4">
+            <h4 class="text-swanky">Location & Contact</h4>
+            <p class="nav justify-content-center justify-content-md-start gap-2">{
+                socalLinks.map((item) => (
+                    <a style="height: 2.2rem; width:2.2rem" class="nav align-items-center justify-content-center text-bg-info fs-5 rounded-circle" href={item.link}>
+                        <i class={`bi bi-${item.class}`} />
+                    </a>
+                ))
+            }</p>
+        </aside>
+
+        <ul class="list-unstyled  text-swanky nav gap-2 gap-lg-4">
+            {pages.map( item => <li class="nav-item">
+                <a href={item.link} class="nav-link text-capitalize p-0">{item.name}</a>
+            </li>)}
+
+            <li class="justify-self-end">
+                &copy; 2025 Cee-jey, Inc. All rights reserved.
+            </li>
+        </ul>
+
+    </section>
+        
+</footer>

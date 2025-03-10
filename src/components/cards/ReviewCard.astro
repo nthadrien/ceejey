@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+    review: CollectionEntry<"reviews">
+}
+
+const { review } = Astro.props;
+
+const rating = ():string[] => {
+    const list:string[] = [];
+    for( let j =0 ; j < 5 ; j++ ) {
+        if ( j < review.data.rating ) list.push("bi-star-fill");
+        else if ( j+0.5 == review.data.rating ) list.push("bi-star-half");
+        else list.push("bi-star");
+    } 
+    return list;
+}
+
+---
+
+<div class="hl-sm border-start border-2 px-3">
+    
+    <div class="d-flex gap-2 justify-content-between">
+        <h6>{review.data.name}</h6>
+        <p>{new Date(review.data.date).toDateString()}</p>
+    </div>
+
+    <p>{review.data.description}</p>
+    <p class="text-secondary">{rating().map( t => <i class={`bi ${t}`}></i>)}</p>
+
+</div>

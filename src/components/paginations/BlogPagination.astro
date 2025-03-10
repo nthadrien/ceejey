@@ -1,0 +1,25 @@
+
+---
+import { map } from 'astro:schema';
+
+
+interface Props {
+    listSize : number;
+    pageSize : number;
+    currentPage : number;
+};
+
+const { listSize, pageSize, currentPage } = Astro.props;
+
+const numberOfPages = Math.ceil(listSize/pageSize);
+---
+
+<nav aria-label="list pagination" class="nav gap-2 justify-content-center align-items-center">
+
+    {[ ...Array(numberOfPages).keys()].map( item =>
+        <a class={`btn border rounded-0 ${currentPage === item + 1? "text-bg-primary":"bg-body-tertiary"}`} href="#"> 
+            {item+1}
+        </a>
+    )}
+
+</nav>

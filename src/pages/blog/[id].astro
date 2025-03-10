@@ -1,0 +1,98 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import type { ACTION_ERROR_CODES } from "astro:actions";
+import { getEntries } from "astro:content";
+import BlogCard from "../../components/cards/BlogCard.astro";
+
+
+export const getStaticPaths = (async () => {
+    const post = await getCollection("blog");
+    return post.map( post => {
+        return {
+            params: { id: post.id },
+            props: {post}
+        }
+    });
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter  } = await render(post);
+
+const relatedPosts = await getEntries(post.data.relatedPosts);
+
+
+const headerInfo = {
+	description : post.data.description,
+	title: post.data.title,
+	keywords: post.data.tags,
+};
+---
+
+<Layout {...headerInfo}>
+
+    <section style="max-width: 768px;" class="container mx-auto">
+        
+
+        <img class="w-100 object-fit-cover mb-4" src={post.data.image.src} alt={post.data.image.alt} alt="">
+
+        <nav class="nav justify-content-between gap-2 border-bottom" aria-label="tags list">
+
+            <div>
+                {remarkPluginFrontmatter.minutesRead} <i class="bi bi-dot"></i> {post.data.publishDate.toDateString()} <br/>
+                <b>Tags:</b> {post.data.tags.map( tag => <a class="me-2 small text-info" href={`/post/${tag}-0`}>{tag}</a>)}
+            </div>
+
+            <div class="nav col-12 gap-2">
+                <strong>Written by: </strong> <p class="smaller">{post.data.author} <i class="bi bi-dot"></i> {post.data.authorContact} <i class="bi bi-dot"></i> health care specialist</p>
+            </div>
+
+        </nav>
+
+        <main class="d-flex flex-column gap-2 mt-3">
+            <Content />
+        </main>
+
+        <button onclick="javascript:window.history.back()" class="btn btn-sm text-primary">
+            <i class="bi bi-arrow-left"></i> Return
+        </button>
+
+    </section>
+
+    {relatedPosts[0] && <section class="container ">
+
+        <h1 class="my-4">Similar Posts:</h1>
+
+        <div class="row g-3">
+            {relatedPosts.map( post => <div style="max-width: 21rem;" class="col">
+                <BlogCard post={post} />
+            </div>)}
+        </div>
+    </section>}
+
+    <section class="container mx-auto">
+        
+    </section>
+
+</Layout>
+
+<style is:global>
+    h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.3rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    img {
+        margin: auto;
+    }
+</style>

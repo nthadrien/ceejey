@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const headerInfo = {
+	description : "Home page for show casing many things.",
+	title: "Contact Me",
+	keywords:[],
+};
+
+const link = Astro.url
+---
+
+
+<Layout {...headerInfo}>
+
+	<header style="min-height: max(30vh,320px);" class="nav column justify-content-center align-items-center text-center">
+
+        <h1 class="text-swanky">Contact Us</h1>
+
+    </header>
+
+    <section class="container row justify-content-center align-items-center g-2 mx-auto mt-4 py-4 ">
+
+		<div class="col-md-8 nav justify-content-between shadow bg-body p-2 p-lg-4 rounded-4">
+
+			<div class="col-md-4">
+				<h5>Email Us</h5>
+				<p class="small">info@my-domain.com <br/> suppport@my-domain.com</p>
+			</div>
+
+			<div style="max-height: 5rem;" class="vr"></div>
+
+			<div class="col-md-3">
+				<h5>Call Us</h5>
+				<p class="small">(123) 456-7890</p>
+			</div>
+
+			<div style="max-height: 5rem;" class="vr"></div>
+
+			<div class="col-md-4">
+				<h5>Address</h5>
+				<small class="small">
+					San Francisco |  500 Terry Francine Street,8790
+				</small>
+			</div>
+
+			<p class="my-4">Monday - Friday 7am-7pm EST</p>
+
+			<form class="col-12">
+
+				<div class="form-floating mb-3">
+					<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+					<label for="floatingInput">Email address</label>
+				</div>
+
+				<div class="form-floating mb-3">
+					<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+					<label for="floatingTextarea">message</label>
+				</div>
+
+				<button type="submit" class="btn btn-primary">
+					<i class="bi bi-send-check-fill"></i> Send
+				</button>
+
+
+			</form>
+		</div>
+        
+    </section>
+
+</Layout>

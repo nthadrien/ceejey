@@ -1,0 +1,265 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, getEntries } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import ReviewCard from "@components/cards/ReviewCard.astro";
+import ProductCard from "@components/cards/ProductCard.astro";
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
+import { map } from "astro:schema";
+import GenHeader from "@components/headers/GenHeader.astro";
+import { getEntry } from "astro:content";
+
+export const getStaticPaths = (async () => {
+    const products = await getCollection("products");
+    return products.map( product => ( {
+        params: { category: product.data.category , id: product.data.id },
+        props: { product }
+    }));
+}) satisfies GetStaticPaths;
+
+const { product } = Astro.props;
+
+const totalQty = product.data.colors.reduce( 
+    (total,current) => total + current.qty , 0
+);
+const reviews = await getEntries(product.data.reviews) ?? [];
+const relatedProducts = await getEntries(product.data.relatedProducts) ?? [];
+// const category = await getEntry(product.data.category);
+
+
+const reviewStats: any = {
+    others: 0,
+    average:0,
+    "three":0,
+    "four":0,
+    "five":0
+}
+
+for( let j=0 ; j < reviews.length ; j++ ) {
+    reviews[j].data.rating == 5 ? reviewStats.five += 1 :
+    reviews[j].data.rating == 4 ? reviewStats.four += 1 :
+    reviews[j].data.rating == 3 ? reviewStats.three += 1 :
+    reviewStats.others += 1;
+    reviewStats.average += reviews[j].data.rating;
+
+    if ( j+1 > reviews.length ) reviewStats.average /= reviews.length;
+}
+
+const productInfo = JSON.stringify({
+    id: product.data.id,
+    image: product.data.images[0],
+    category: product.data.category +"-"+ product.data.brand +"-"+  product.data.name,
+    price: product.data.price,
+    discount: () => product.data.discount ?? "0"
+});
+
+const headerInfo = {
+    description : product.data.category,
+    title: product.data.name,
+    keywords:[],
+};
+
+---
+
+<Layout {...headerInfo}>
+
+    <BreadCrumb />
+
+
+    <main class="container mx-auto row justify-content-between">
+        
+        <section class="col-md-4 d-flex justify-content-between gap-2">
+
+            <img 
+                id="mainImg"
+                style="max-height: 320px;" 
+                class="object-fit-contain" 
+                src={`/images/products/${product.data.images[0]}`} 
+                alt={product.data.name} 
+            />
+
+            <nav class="list-unstyled nav flex-column justify-content-start gap-2">
+                {product.data.images.map( item =>  <img  
+                    id="imgs"
+                    style="height: 56px;" 
+                    class="object-fit-contain border" 
+                    src={`/images/products/${item}`} 
+                    alt={item} 
+                />
+                )}
+            </nav>
+
+        </section>
+
+
+        <section class="col-md-7">
+
+            <p class="h5">{product.data.category}</p>
+            <h3 class="text-pacifico text-primary">{product.data.name}</h3>
+            <p>{product.data.brand}</p>
+            <p class="fs-5">${product.data.price}</p>
+
+            <h5 class="fw-semibold text-swanky">Description :</h5>
+            <p>{product.data.description}</p>
+            <ul class="ps-3">
+                {product.data.features.map( item => <li>{item}</li>)}
+            </ul>
+
+            <h5 class="fw-semibold text-swanky">Quantity in Stock: {totalQty}</h5>
+
+            <div class="nav gap-2 py-4">
+
+                <label class="form-label d-flex align-items-center">
+                    <span class="me-4">Color:</span>
+                    <select name="color" style="max-width:250px;background:inherit;" class="form-select form-select-sm fw-semibold border-0">
+                        {product.data.colors.map( (item) => <option value={`${item.qty},${item.name}`}>{item.name} </option> )}
+                    </select>
+                </label>
+
+
+                <label class="form-label d-flex align-items-center">
+                    <span class="me-4">Quantity:</span>
+                    <!-- <button class="btn btn-sm btn-primary">-</button> -->
+                    <input style="max-width:56px;background:inherit;" type="number" value="1" min="1" class="form-control border-0" name="qty" required/>
+                    <!-- <button class="btn btn-sm btn-primary">+</button> -->
+                </label>
+                
+            </div>
+
+            <input type="hidden" name="json" value={productInfo} required/>
+
+            <button id="submit" class="btn text-bg-primary">
+                <i class="bi bi-cart-plus mx-2"></i> Add to Cart
+            </button>
+            
+        </section>
+
+    </main>
+    <!-- more: related & reviews -->
+    <section class="container mx-auto my-4">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="related-products-tab" data-bs-toggle="tab" data-bs-target="#related-products-tab-pane" type="button" role="tab" aria-controls="related-products-tab-pane" aria-selected="true">
+                    Related Products <small>({relatedProducts.length})</small>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">
+                    Reviews <small>({reviews.length})</small>
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3 px-2" id="myTabContent">
+
+            <!-- tab related products -->
+            <aside class="tab-pane fade show active" id="related-products-tab-pane" role="tabpanel" aria-labelledby="related-products-tab" tabindex="0"> 
+                {relatedProducts[0] ?  <div class="row row-cols-2 row-cols-md-4">
+                    {relatedProducts.map( product => <ProductCard  product={product} />) }
+                </div> :  <h3 class="text-swanky">No related Product for now.</h3>
+                }
+            </aside>
+
+            <!-- tab ratings -->
+            <aside class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+
+                <div>
+                    <h4>Overall Rating: <span class="ms-3">{reviewStats.average}</span></h4>
+                </div>
+
+                <form class="row g-3 justify-content-between my-3">
+
+                    <section class="col-lg-4 d-flex flex-column gap-3">
+
+                        { reviews[0] && ['five','four','three',"others"].map( (rate:string, i:number) => <div class="d-flex gap-2">
+
+                                <b class="col-3">{ i < 3 ? 5 - i : "Others"}</b>
+
+                                <div class="progress col-9" role="progressbar" aria-label="rating" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-primary" style={`width: ${(reviewStats[rate]/reviews.length ) * 100}%`}>
+                                        {(reviewStats[rate]/reviews.length ) * 100} %
+                                    </div>
+                                </div>
+                        </div>) || (<h3 class="text-swanky">No reviews for this Product.</h3>) }
+                    </section>
+
+                    <section class="col-lg-6 row g-2">
+
+                        <label class="col-md-8">
+                            <input class="form-control" placeholder="Name / Psuedo" name="name" required/>
+                        </label>
+
+                        <label class="col-md-4">
+                            <input type="text" minlength="1" maxlength="3" class="form-control" placeholder="Rate from 0 - 5" name="rating" required/>
+                        </label>
+
+                        <label class="col-12">
+                            <textarea class="form-control" placeholder="Leave a comment here" name="review"></textarea>
+                        </label>
+
+                        <label class="col-12">
+                            <button class="btn btn-primary">
+                                Submit
+                            </button>
+                        </label>
+
+                    </section>
+                    
+                </form>
+
+                {reviews[0] &&  (<div class="my-3">
+                    <h5 class="border-bottom py-2">All Reviews</h5>
+                    { reviews.map( review => <ReviewCard  review={review} />)}
+                </div>)}
+            </aside>
+
+        </div>
+    </section>
+
+</Layout>
+
+
+<script>
+    import { addToCart, notifyUser } from "src/stores/users";
+
+    document.querySelector("#submit")?.addEventListener("click", (e:any)=>{
+
+        const inpo: NodeListOf<HTMLInputElement> = document.querySelectorAll("input");
+        const color : HTMLSelectElement | null = document.querySelector("select") ;
+
+        const values:string[] = color?.value.split(",") ?? ["1","any"];
+
+        const info:{
+            id: string,
+            image: string,
+            category: string,
+            price: string,
+            discount: string
+        } = JSON.parse(inpo[1].value.toString());
+
+        let verified = parseInt(inpo[0].value) <= parseInt(values[0])
+
+        if ( verified ) {
+            addToCart({
+                ...info, qty : values[0], color: values[1], max:inpo[0].value
+            });
+        } else {
+            notifyUser({ type: "danger" , message: "Sorry, the quantity is more than what is available."})
+        }
+    });
+
+
+    const mainImg:HTMLImageElement | null = document.querySelector("#mainImg") ;
+    const smallImgs:NodeListOf<HTMLImageElement>  = document.querySelectorAll("#imgs");
+
+    smallImgs.forEach( img => img.addEventListener( "click" , (e:any) => {
+
+        console.log(e.target.alt)
+
+        if ( mainImg ) {
+            mainImg.src = e.target.src;
+            mainImg.alt = e.target.alt;
+        }
+    }))
+</script>
