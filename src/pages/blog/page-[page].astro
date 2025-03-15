@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/cards/BlogCard.astro";
 import type { CollectionEntry } from "astro:content";
+import NewsLetter from "@components/forms/NewsLetter.astro";
 
 
 
@@ -32,7 +33,7 @@ import type { CollectionEntry } from "astro:content";
     </header>
 
 
-    <main class="container mx-auto g-3 g-lg-4 py-4 row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+    <main style="max-width: 1080px;" class="container mx-auto g-3 g-lg-4 py-4 row row-cols-1 row-cols-sm-2 row-cols-lg-3">
 
         {page.data?.map( (post:CollectionEntry<"blog">) => <aside class="col">
             <BlogCard post={post} />
@@ -42,7 +43,7 @@ import type { CollectionEntry } from "astro:content";
 
 
     <!-- Pagination plog -->
-    <nav aria-label="list pagination" class="container mx-auto py-3 nav gap-2 justify-content-center align-items-center">
+    <nav aria-label="list pagination" class="container mb-3 mx-auto py-3 nav gap-2 justify-content-center align-items-center">
 
         <a aria-disabled={page.url.first? "false":"true"} class={`btn border-0 ${page.url.first? "":"visually-hidden"}`} href={page.url.first}><i class="bi bi-chevron-compact-left"></i> </a>
 
@@ -59,5 +60,8 @@ import type { CollectionEntry } from "astro:content";
         </a>
     
     </nav>
+
+
+    <NewsLetter />
 
 </Layout>

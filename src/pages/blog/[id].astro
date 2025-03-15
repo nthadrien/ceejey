@@ -5,6 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 import type { ACTION_ERROR_CODES } from "astro:actions";
 import { getEntries } from "astro:content";
 import BlogCard from "../../components/cards/BlogCard.astro";
+import NewsLetter from "@components/forms/NewsLetter.astro";
 
 
 export const getStaticPaths = (async () => {
@@ -32,7 +33,7 @@ const headerInfo = {
 
 <Layout {...headerInfo}>
 
-    <section style="max-width: 768px;" class="container mx-auto">
+    <section style="max-width: 720px;" class="container mx-auto">
         
 
         <img class="w-100 object-fit-cover mb-4" src={post.data.image.src} alt={post.data.image.alt} alt="">
@@ -50,7 +51,7 @@ const headerInfo = {
 
         </nav>
 
-        <main class="d-flex flex-column gap-2 mt-3">
+        <main class="content mt-2">
             <Content />
         </main>
 
@@ -58,22 +59,27 @@ const headerInfo = {
             <i class="bi bi-arrow-left"></i> Return
         </button>
 
+
+
+
+        <NewsLetter />
+
+        <section class="container-sm">
+
+            <h1 class="my-4">Similar Posts:</h1>
+
+            <div class="row row-cols-2 g-3">
+                { relatedPosts[0] && relatedPosts.map( post => <div style="max-width: 26rem;" class="col">
+                    <BlogCard post={post} />
+                </div> )}
+
+                { !relatedPosts[0] ?  <h3 class="text-swanky">Sorry no related post available.</h3> : <></> }
+            </div>
+        </section>
+
     </section>
 
-    {relatedPosts[0] && <section class="container ">
-
-        <h1 class="my-4">Similar Posts:</h1>
-
-        <div class="row g-3">
-            {relatedPosts.map( post => <div style="max-width: 21rem;" class="col">
-                <BlogCard post={post} />
-            </div>)}
-        </div>
-    </section>}
-
-    <section class="container mx-auto">
-        
-    </section>
+    
 
 </Layout>
 
@@ -94,5 +100,15 @@ const headerInfo = {
 
     img {
         margin: auto;
+    }
+
+    .content {
+        white-space: 12px;
+
+        & img {
+            border-radius: 1rem;
+            width: 100%;
+            object-fit: contain;
+        }
     }
 </style>

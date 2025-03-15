@@ -94,13 +94,22 @@ a, a.nav-link, .nav-link {
 }
 
 /* product-card */
+.product-card {
+    border: 0;
+}
 .product-card .options {
     opacity: 0;
+    transform: translateX(-20%);
 }
 
 .product-card:hover .options {
     opacity: 1;
+    transform: translateX(5%);
     transition: all 0.5s linear;
+}
+
+.product-card:hover {
+    box-shadow: rgba(4, 3, 3, 0.16) 0px 1px 4px;
 }
 
 

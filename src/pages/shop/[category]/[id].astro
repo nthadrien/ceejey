@@ -5,9 +5,6 @@ import Layout from "@layouts/Layout.astro";
 import ReviewCard from "@components/cards/ReviewCard.astro";
 import ProductCard from "@components/cards/ProductCard.astro";
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
-import { map } from "astro:schema";
-import GenHeader from "@components/headers/GenHeader.astro";
-import { getEntry } from "astro:content";
 
 export const getStaticPaths = (async () => {
     const products = await getCollection("products");
@@ -42,7 +39,7 @@ for( let j=0 ; j < reviews.length ; j++ ) {
     reviewStats.others += 1;
     reviewStats.average += reviews[j].data.rating;
 
-    if ( j+1 > reviews.length ) reviewStats.average /= reviews.length;
+    if ( j+1 >= reviews.length ) reviewStats.average /= reviews.length;
 }
 
 const productInfo = JSON.stringify({
@@ -94,20 +91,28 @@ const headerInfo = {
 
         <section class="col-md-7">
 
-            <p class="h5">{product.data.category}</p>
+            <p>
+                <span class="h5">{product.data.category} </span> -
+                <small class="smaller fw-light">{product.data.brand}</small>
+            </p>
             <h3 class="text-pacifico text-primary">{product.data.name}</h3>
-            <p>{product.data.brand}</p>
-            <p class="fs-5">${product.data.price}</p>
+            <p> 
+                <strong >${product.data.price} </strong> 
+                <span class="vr mx-3"></span>
+                customers rating : {reviewStats.average} / 5 
+            </p>
 
             <h5 class="fw-semibold text-swanky">Description :</h5>
             <p>{product.data.description}</p>
-            <ul class="ps-3">
+
+            <h5 class="fw-semibold text-swanky">Features :</h5>
+            <ul class="p-1 ps-3">
                 {product.data.features.map( item => <li>{item}</li>)}
             </ul>
 
             <h5 class="fw-semibold text-swanky">Quantity in Stock: {totalQty}</h5>
 
-            <div class="nav gap-2 py-4">
+            <div>
 
                 <label class="form-label d-flex align-items-center">
                     <span class="me-4">Color:</span>
@@ -116,12 +121,9 @@ const headerInfo = {
                     </select>
                 </label>
 
-
                 <label class="form-label d-flex align-items-center">
                     <span class="me-4">Quantity:</span>
-                    <!-- <button class="btn btn-sm btn-primary">-</button> -->
                     <input style="max-width:56px;background:inherit;" type="number" value="1" min="1" class="form-control border-0" name="qty" required/>
-                    <!-- <button class="btn btn-sm btn-primary">+</button> -->
                 </label>
                 
             </div>
@@ -164,54 +166,29 @@ const headerInfo = {
             <!-- tab ratings -->
             <aside class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
 
-                <div>
-                    <h4>Overall Rating: <span class="ms-3">{reviewStats.average}</span></h4>
-                </div>
-
-                <form class="row g-3 justify-content-between my-3">
+                <div class="row g-3">
 
                     <section class="col-lg-4 d-flex flex-column gap-3">
-
-                        { reviews[0] && ['five','four','three',"others"].map( (rate:string, i:number) => <div class="d-flex gap-2">
-
-                                <b class="col-3">{ i < 3 ? 5 - i : "Others"}</b>
-
-                                <div class="progress col-9" role="progressbar" aria-label="rating" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <h6 class="py-2">Reviews Summary</h6>
+                        { reviews[0] && ['five','four','three'].map( (rate:string, i:number) => <div class="d-flex gap-1">
+                                <b class="col-2">{5 - i}</b>
+                                <div class="progress col-8" role="progressbar" aria-label="rating" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-bar bg-primary" style={`width: ${(reviewStats[rate]/reviews.length ) * 100}%`}>
-                                        {(reviewStats[rate]/reviews.length ) * 100} %
                                     </div>
                                 </div>
+                                <span class="col-2">{(reviewStats[rate]/reviews.length ) * 100} %</span>
                         </div>) || (<h3 class="text-swanky">No reviews for this Product.</h3>) }
+
+                        { reviews[0] && <b> Others : {(reviewStats['others']/reviews.length ) * 100}% </b> }
                     </section>
 
-                    <section class="col-lg-6 row g-2">
 
-                        <label class="col-md-8">
-                            <input class="form-control" placeholder="Name / Psuedo" name="name" required/>
-                        </label>
-
-                        <label class="col-md-4">
-                            <input type="text" minlength="1" maxlength="3" class="form-control" placeholder="Rate from 0 - 5" name="rating" required/>
-                        </label>
-
-                        <label class="col-12">
-                            <textarea class="form-control" placeholder="Leave a comment here" name="review"></textarea>
-                        </label>
-
-                        <label class="col-12">
-                            <button class="btn btn-primary">
-                                Submit
-                            </button>
-                        </label>
-
+                    <section class="col-lg-8 d-flex flex-column gap-2">
+                        {reviews[0] && reviews.map( review => <ReviewCard  review={review} />)}
                     </section>
-                    
-                </form>
 
-                {reviews[0] &&  (<div class="my-3">
-                    <h5 class="border-bottom py-2">All Reviews</h5>
-                    { reviews.map( review => <ReviewCard  review={review} />)}
-                </div>)}
+
+                </div>
             </aside>
 
         </div>

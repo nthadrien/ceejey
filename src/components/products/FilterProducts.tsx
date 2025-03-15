@@ -14,7 +14,7 @@ const FilterProducts = () => {
   }
 
     
-  return (<form onSubmit={handleSubmit} style="max-width: 450px;" class="d-flex flex-column gap-3 p-2">
+  return (<form onSubmit={handleSubmit} style="max-width: 450px;" class="d-flex flex-column gap-3 p-2 bg-body rounded-2">
     
     <p class="h5 fw-semibold border-bottom">Filter Products By:</p>
   

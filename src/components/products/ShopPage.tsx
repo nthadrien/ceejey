@@ -25,7 +25,7 @@ function ShopPage () {
   const endAt = () => startAt() + parseInt( $page().size );
   
   return (<>
-    <main class="container-xl row mx-auto">
+    <main class="container row mx-auto">
 
       <aside class="col-md-3 ">
         <FilterProducts />
@@ -33,7 +33,7 @@ function ShopPage () {
 
       <section class="col-md-9">
         <SearchNav size={filteredProduct().length} />
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
+        <div class="row row-cols-2  row-cols-lg-3 g-1 g-lg-2">
           <For each={filteredProduct().slice( startAt() , endAt() ) } >
             { item => <div class="col">
               <ProductCard

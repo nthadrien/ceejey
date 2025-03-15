@@ -19,14 +19,13 @@ const rating = ():string[] => {
 
 ---
 
-<div class="hl-sm border-start border-2 px-3">
+<div class="hl-1 px-2">
     
-    <div class="d-flex gap-2 justify-content-between">
-        <h6>{review.data.name}</h6>
+    <div class="d-flex gap-1 justify-content-between small">
+        <strong>{review.data.name}</strong>
         <p>{new Date(review.data.date).toDateString()}</p>
     </div>
-
     <p>{review.data.description}</p>
-    <p class="text-secondary">{rating().map( t => <i class={`bi ${t}`}></i>)}</p>
+    <p class="text-secondary small">{rating().map( t => <i class={`bi ${t}`}></i>)}</p>
 
 </div>
