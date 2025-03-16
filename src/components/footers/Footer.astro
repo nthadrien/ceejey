@@ -1,6 +1,6 @@
 ---
 import WbLogo from "@components/navbar/WbLogo.astro";
-import { map } from "astro:schema";
+import LastFooter from "./LastFooter.astro";
 
 const socalLinks: { class: string; link: string }[] = [
     { class: "facebook", link: "#facebook" },
@@ -78,16 +78,9 @@ const brands: string[] = [
             }</p>
         </aside>
 
-        <ul class="list-unstyled  text-swanky nav gap-2 gap-lg-4">
-            {pages.map( item => <li class="nav-item">
-                <a href={item.link} class="nav-link text-capitalize p-0">{item.name}</a>
-            </li>)}
 
-            <li class="justify-self-end">
-                &copy; 2025 Cee-jey, Inc. All rights reserved.
-            </li>
-        </ul>
-
+        <LastFooter />
+        
     </section>
         
 </footer>

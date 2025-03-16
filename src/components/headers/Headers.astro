@@ -1,0 +1,15 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description ="" } = Astro.props;
+---
+
+<header style="min-height: max(15vh,200px);" class="nav flex-column justify-content-center align-items-center text-center">
+
+    <h1 class="text-swanky">{title}</h1>
+    <p class="small text-black-50">{description}</p>
+
+</header>

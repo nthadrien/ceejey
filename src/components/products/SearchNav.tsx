@@ -24,7 +24,7 @@ function SearchNav(props:Props): JSX.Element {
 
         <p class="d-flex align-items-center">
             sort by:
-            <select style="max-width: 90px;" name="sort" class="bg-body-tertiary rounded-0 border-0 smaller border-bottom form-select">
+            <select style="max-width: 90px;" name="sort" class="border-0 smaller form-select">
                 <option value="price">Price</option>
                 <option value="popularity">popularity</option>
             </select>

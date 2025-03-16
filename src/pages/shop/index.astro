@@ -1,10 +1,11 @@
 ---
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
 import CarouselHeader from "@components/headers/CarouselHeader.astro";
-import Layout from "@layouts/Layout.astro";
+import Layout from "@layouts/ELayout.astro";
 import { getCollection } from "astro:content";
 import ShopPage from "@components/products/ShopPage";
 import TopProducts from "@components/products/TopProducts.astro";
+import Header from "@components/headers/Headers.astro";
 
 const headerInfo = {
     description : "Home page for show casing many things.",
@@ -13,13 +14,11 @@ const headerInfo = {
 };
 
 const products = await getCollection("products");
-
-
+const list= await products.map( item => item.data );
 ---
 
-<Layout {...headerInfo}>  
-    <CarouselHeader />
+<Layout {...headerInfo}> 
     <BreadCrumb />
-    <ShopPage client:load />
+    <ShopPage products={list} client:load />
     <TopProducts />
 </Layout>

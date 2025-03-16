@@ -1,6 +1,9 @@
 ---
 import type { ACTION_ERROR_CODES } from 'astro:actions';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/ELayout.astro';
+import HomeHeader from '@components/headers/HomeHeader.astro';
+import { getEntries } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 const headerInfo = {
 	description : "Home page for show casing many things.",
@@ -8,11 +11,20 @@ const headerInfo = {
 	keywords:[],
 };
 
+
+const posts = await getCollection('blog');
+// const requiredBlogs = posts.sort( (a,b) => {
+// 	return a.data.publishDate < b.data.publishDate
+// }).slice(0,2);
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout {...headerInfo}>
+
+	<HomeHeader />
+
 	<h1 class="text-primary text-swanky"> Hello Ceejey</h1>
 
 	<h3 class="text-secondary">Welcome to this website</h3>
@@ -22,4 +34,31 @@ const headerInfo = {
 		Placeat earum eos quidem doloremque animi cum esse sapiente aliquid blanditiis? 
 		Illum consectetur placeat reprehenderit cupiditate tenetur? Ab minima fugiat saepe vel.
 	</p>
+
+	<section>
+		<h1>Categories / Brand showcase</h1>
+	</section>
+
+	<section>
+		<h2>Featured Categories</h2>
+
+	</section>
+
+	<section>
+		<h2>Trending , TOp Rated , New Categories</h2>
+
+	</section>
+
+	<section>
+		<h2 class="text-center">Our latest News</h2>
+
+		<p class="text-center">If you need more tips on how to ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas praesentium placeat libero, tenetur maiores nemo a aperiam reprehenderit! Sint fugit recusandae ex velit voluptates quaerat quos et nostrum veritatis veniam.</p>
+
+		<h1>Blog List</h1>
+	</section>
+
+
+	<section>
+		<p>Carousel of brands I guess</p>
+	</section>
 </Layout>

@@ -1,9 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Header from "@components/headers/Headers.astro";
+import LastFooter from "@components/footers/LastFooter.astro";
+import Layout from "@layouts/ELayout.astro";
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
 
 const headerInfo = {
-	description : "Home page for show casing many things.",
-	title: "Contact Me",
+	description : "We will get to you as soon as possible",
+	title: "Contact Us",
 	keywords:[],
 };
 
@@ -13,59 +16,78 @@ const link = Astro.url
 
 <Layout {...headerInfo}>
 
-	<header style="min-height: max(30vh,320px);" class="nav column justify-content-center align-items-center text-center">
+	<BreadCrumb />
 
-        <h1 class="text-swanky">Contact Us</h1>
+	<Header title={headerInfo.title} description={headerInfo.description} />
 
-    </header>
+    <section style="max-width: 968px;" class="container row g-2 align-items-center mx-auto p-2">
 
-    <section class="container row justify-content-center align-items-center g-2 mx-auto mt-4 py-4 ">
+		<p>We are Open and online:</p>
+		<p class="col-12 my-3 text-pacifico">Monday - Friday 7am-7pm EST</p>
 
-		<div class="col-md-8 nav justify-content-between shadow bg-body p-2 p-lg-4 rounded-4">
-
-			<div class="col-md-4">
-				<h5>Email Us</h5>
-				<p class="small">info@my-domain.com <br/> suppport@my-domain.com</p>
-			</div>
-
-			<div style="max-height: 5rem;" class="vr"></div>
-
-			<div class="col-md-3">
-				<h5>Call Us</h5>
-				<p class="small">(123) 456-7890</p>
-			</div>
-
-			<div style="max-height: 5rem;" class="vr"></div>
-
-			<div class="col-md-4">
-				<h5>Address</h5>
-				<small class="small">
-					San Francisco |  500 Terry Francine Street,8790
-				</small>
-			</div>
-
-			<p class="my-4">Monday - Friday 7am-7pm EST</p>
-
-			<form class="col-12">
-
-				<div class="form-floating mb-3">
-					<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-					<label for="floatingInput">Email address</label>
-				</div>
-
-				<div class="form-floating mb-3">
-					<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-					<label for="floatingTextarea">message</label>
-				</div>
-
-				<button type="submit" class="btn btn-primary">
-					<i class="bi bi-send-check-fill"></i> Send
-				</button>
-
-
-			</form>
+		<div class="box col-sm-6 col-md-4 ps-3 border-start">
+			<h5 class="text-pacifico">Email Us</h5>
+			<p class="small">info@my-domain.com <br/> suppport@my-domain.com</p>
 		</div>
+		
+
+		<div class="box col-sm-6 col-md-4 ps-3">
+			<h5 class="text-pacifico">Call Us</h5>
+			<p class="small">
+				(123) 456-7890 <br/> 
+				(123) 456-7890
+			</p>
+		</div>
+
+		<div class="box col-md-4 ps-3">
+			<h5 class="text-pacifico">Address</h5>
+			<small class="small">
+				San Francisco |  500 Terry Francine Street,8790
+			</small>
+		</div>
+
+		<p class="lead col-12"> Or you could reach to us directly : </p>
+		
+
+		<form class="col-12">
+
+			<div class="form-floating mb-3">
+				<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+				<label for="floatingInput">Email address</label>
+			</div>
+
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="floatingInput" placeholder="name please">
+				<label for="floatingTextarea">Name</label>
+			</div>
+
+			<textarea rows="5" class="form-control mb-3" placeholder="Leave a message here" id="floatingTextarea"></textarea>
+
+			<button type="submit" class="btn btn-primary">
+				<i class="bi bi-send-check-fill me-3"></i> Send
+			</button>
+
+
+		</form>
         
     </section>
 
+
 </Layout>
+
+<style>
+	.box {
+		position: relative;
+		border-left: 1px solid lightgray;
+	}
+
+	.box::after {
+		content: "";
+		position: absolute;
+		left: -1%;
+		top: 0px;
+		background-color: purple;
+		height: 30%;
+		width: 1.6%;
+	}
+</style>

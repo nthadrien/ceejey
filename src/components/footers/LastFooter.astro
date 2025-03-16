@@ -1,0 +1,19 @@
+---
+const pages: { name:string , link:string}[] = [
+    { name:"about" , link:"/about/"},
+    { name:"shop" , link:"/products/"},
+    { name:"Services" , link:"/about#services"},
+    { name:"blog",link:"/blog"}
+];
+
+---
+
+<ul class="list-unstyled  text-swanky nav gap-2 gap-lg-4">
+    {pages.map( item => <li class="nav-item">
+        <a href={item.link} class="nav-link text-capitalize p-0">{item.name}</a>
+    </li>)}
+
+    <li class="align-self-end">
+        &copy; 2025 Cee-jey, Inc. All rights reserved.
+    </li>
+</ul>

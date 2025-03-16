@@ -1,0 +1,23 @@
+---
+import Navbar from '@components/navbar/Navbar.astro';
+import Layout from './Layout.astro';
+import Footer from '@components/footers/Footer.astro';
+
+interface Props {
+	description: string;
+	title: string;
+	keywords?:string[];
+}
+
+const { 
+	description ="description of ceejey showcase",
+	title="e-commerce",
+	keywords=["shampoo"]
+}= Astro.props;
+---
+
+<Layout description={description} title={title} keywords={keywords}>
+    <Navbar />
+    <slot />
+    <Footer />
+</Layout>

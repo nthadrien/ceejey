@@ -3,19 +3,22 @@
 const location:string[] = Astro.url.pathname.split("/");
 const last:number = location.length - 1;
 
+interface Props {
+  page?: string;
+}
+
+
+const { page } = Astro.props;
 
 console.log(location);
 // --bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);
 
 ---
 
-
-
-
 <nav 
-  style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" 
+  style="max-width: 1080px ;--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" 
   aria-label="breadcrumb"
-  class="container-lg mx-auto py-3"  
+  class="container-sm nav justify-content-between aligin-items-center mx-auto py-3 px-2 text-pacifico"  
 >
   <ol class="breadcrumb">
     {location.map( (page, index) => <li class={`breadcrumb-item ${index== last ? "active": ""}`}>
@@ -26,4 +29,6 @@ console.log(location);
       </a>
     </li>)}
   </ol>
+
+  <span class="fw-light">{ page ?? ( location[last] != "" ? location[last] : location[last-1])  }</span>
 </nav>

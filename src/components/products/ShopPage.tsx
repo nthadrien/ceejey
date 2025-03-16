@@ -10,9 +10,8 @@ import data from "src/data/products/all-products.json";
 import ProductCard from "@components/cards/ProductCard";
 import Pagination from "@components/paginations/Pagination";
 
-function ShopPage () {
-
-
+function ShopPage (props:any) {
+  
   const $page = useStore(page);
 
   const filteredProduct = createMemo(()=>{
@@ -25,16 +24,19 @@ function ShopPage () {
   const endAt = () => startAt() + parseInt( $page().size );
   
   return (<>
-    <main class="container row mx-auto">
+    <main class="container-xl row mx-auto">
 
-      <aside class="col-md-3 ">
+      <aside class="col-md-3 col-xxl-2">
         <FilterProducts />
       </aside>
 
-      <section class="col-md-9">
+      <section class="col-md-9 col-xxl-10">
+
         <SearchNav size={filteredProduct().length} />
-        <div class="row row-cols-2  row-cols-lg-3 g-1 g-lg-2">
-          <For each={filteredProduct().slice( startAt() , endAt() ) } >
+
+        <div class="row row-cols-2  row-cols-lg-3 g-1 g-lg-2 mb-4">
+
+          <For each={props.products.slice( startAt() , endAt() ) } >
             { item => <div class="col">
               <ProductCard
                 id = {item.id}
@@ -46,6 +48,7 @@ function ShopPage () {
               />
             </div>}
           </For>
+          
         </div>
 
         <Pagination size={filteredProduct().length} />

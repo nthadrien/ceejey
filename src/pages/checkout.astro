@@ -1,10 +1,7 @@
 ---
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
-import GenHeader from "@components/headers/GenHeader.astro";
-import Layout from "@layouts/Layout.astro";
-import type { ACTION_ERROR_CODES } from "astro:actions";
-
-
+import Header from "@components/headers/Headers.astro";
+import Layout from "@layouts/ELayout.astro";
 
 const headerInfo = {
 	description : "",
@@ -16,7 +13,7 @@ const headerInfo = {
 <Layout {...headerInfo}>
 
 	<BreadCrumb />
-	<GenHeader {...headerInfo} />
+	<Header title={headerInfo.title} description={headerInfo.description} />
 
     <main class="container-xxl mx-auto row g-3">
 
@@ -54,9 +51,7 @@ const headerInfo = {
 					</div>
 
 				</li>)}
-
 			</ul>
-
 
 			<div>
 				<p>Total Items Price : $400,5</p>

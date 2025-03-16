@@ -38,9 +38,9 @@
     box-sizing: border-box;
 }
 
-html, body {
+/* html, body {
     background: var(--neutral-clr);
-}
+} */
 
 body {
     font-size: 12px !important;
@@ -99,12 +99,13 @@ a, a.nav-link, .nav-link {
 }
 .product-card .options {
     opacity: 0;
+    top: 15%;
     transform: translateX(-20%);
 }
 
 .product-card:hover .options {
     opacity: 1;
-    transform: translateX(5%);
+    transform: translateX(8%);
     transition: all 0.5s linear;
 }
 
@@ -126,6 +127,6 @@ a, a.nav-link, .nav-link {
     margin-left: 1rem;
 }
 
-.btn, .form-control, .form-select {
+/* .btn, .form-control, .form-select {
     border-radius: 0;
-} 
+}  */

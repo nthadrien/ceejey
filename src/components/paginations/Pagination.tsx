@@ -36,7 +36,7 @@ export default function Pagination(props:Props): JSX.Element {
             items per page
         </div>
 
-        <div>
+        <div class="border-top border-2">
             <For each={pageMaps()}>
                 {item => <button onClick={_ => changePage(item)} class={`btn ${item == parseInt($page().page) ? "text-bg-primary" : ""}`}>
                     {item + 1}

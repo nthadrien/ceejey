@@ -14,7 +14,7 @@ const { post } = Astro.props;
 <div class="card border-0">
     <img style="height: 230px;" src={post.data.image.src} alt={post.data.image.alt} class="card-img-top" />
 
-    <div  class="card-body bg-body-tertiary p-1">
+    <div  class="card-body">
         <div class="nav gap-1 small py-3">
             {post.data?.tags.map( tag => <span class="badge bg-danger-subtle ">{tag}, </span>)}
         </div>

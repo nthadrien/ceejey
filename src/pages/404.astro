@@ -1,0 +1,47 @@
+---
+import LastFooter from "@components/footers/LastFooter.astro";
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
+import Layout from "@layouts/Layout.astro";
+
+const headerInfo = {
+    description : "Oops resources not found!!",
+    title: "404 Page",
+    keywords:['error','404','unknown'],
+};
+
+---
+
+<Layout {...headerInfo}>
+
+
+    <main style="height: 100vh;width:100%;" class="nav flex-column gap-3 justify-content-center align-items-center py-4 p-2">
+
+        <BreadCrumb />
+
+        <h1 class="display-1 text-swanky text-danger">404</h1>
+
+        <p class="display-4">Ooops!! You are <span class="text-bg-danger px-2">LOST</span> <strong class="text-danger">.</strong></p>
+
+        <p class="text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ducimus praesentium <br/>
+            quidem ipsum ipsam alias esse numquam repudiandae in tempore veniam reiciendis deleniti fuga 
+            natus dolor distinctio, quasi corporis perferendis?
+        </p>
+
+        <section class="mb-4">
+
+            <a href="/" class="btn btn-secondary-outline ">
+                Back Home
+            </a>
+
+            <button onclick="() => window.history.back(-1)" class="btn btn-danger">
+                Go back
+            </button>
+
+        </section>
+
+        <LastFooter />
+
+    </main>
+
+</Layout>

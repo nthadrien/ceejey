@@ -2,16 +2,18 @@
 import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
 
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../layouts/ELayout.astro";
+import Header from "@components/headers/Headers.astro";
 import BlogCard from "../../components/cards/BlogCard.astro";
 import type { CollectionEntry } from "astro:content";
 import NewsLetter from "@components/forms/NewsLetter.astro";
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
 
 
 
     const headerInfo = {
         description : "Home page for show casing many things.",
-        title: "Home Page",
+        title: "Blog",
         keywords:[],
     };
 
@@ -27,10 +29,8 @@ import NewsLetter from "@components/forms/NewsLetter.astro";
 ---
 
 <Layout {...headerInfo}>
-
-    <header style="min-height: max(30vh,320px);" class="nav column justify-content-center align-items-center text-center">
-        <h1 class="text-swanky">Blog </h1>
-    </header>
+    <BreadCrumb />
+    <Header title={headerInfo.title} description={headerInfo.description}/>
 
 
     <main style="max-width: 1080px;" class="container mx-auto g-3 g-lg-4 py-4 row row-cols-1 row-cols-sm-2 row-cols-lg-3">
