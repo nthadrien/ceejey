@@ -8,12 +8,11 @@ const pages: { name:string , link:string}[] = [
 
 ---
 
-<ul class="list-unstyled  text-swanky nav gap-2 gap-lg-4">
-    {pages.map( item => <li class="nav-item">
-        <a href={item.link} class="nav-link text-capitalize p-0">{item.name}</a>
-    </li>)}
+<aside class="list-unstyled nav justify-content-between align-items-center gap-2 gap-lg-4 text-pacifico fw-light">
 
-    <li class="align-self-end">
-        &copy; 2025 Cee-jey, Inc. All rights reserved.
-    </li>
-</ul>
+    <p class="text-center  text-md-start">
+        {pages.map( item => <a href={item.link} class="d-inline text-info rounded-2 me-2 text-capitalize"> {item.name}</a>)}
+    </p>
+
+    <span>&copy; 2025 Cee-jey, Inc. All rights reserved.</span>
+</aside>

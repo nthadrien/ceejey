@@ -26,15 +26,15 @@ function ShopPage (props:any) {
   return (<>
     <main class="container-xl row mx-auto">
 
-      <aside class="col-md-3 col-xxl-2">
+      <aside class="col-md-3 ">
         <FilterProducts />
       </aside>
 
-      <section class="col-md-9 col-xxl-10">
+      <section class="col-md-9">
 
         <SearchNav size={filteredProduct().length} />
 
-        <div class="row row-cols-2  row-cols-lg-3 g-1 g-lg-2 mb-4">
+        <div class="row row-cols-2  row-cols-lg-3 row-cols-xl-4 g-1 g-lg-2 mb-4">
 
           <For each={props.products.slice( startAt() , endAt() ) } >
             { item => <div class="col">

@@ -33,15 +33,14 @@ const brands: string[] = [
 ];
 ---
 
-<footer class="container-fluid p-2 d-flex flex-column align-items-center gap-4">
+<footer class="container-fluid bg-body-tertiary p-2 d-flex flex-column align-items-center gap-4 border-primary pt-3">
 
-    <hr class="container border-primary" />
 
     <section
         class="container-xl row justify-content-between g-2 g-lg-4 text-center text-md-start"
     >   
 
-        <aside class="col-12 col-lg-4">
+        <aside class="col-12 col-md-4">
 
 
             <h2>
@@ -55,7 +54,7 @@ const brands: string[] = [
         </aside>
 
 
-        <aside class=" d-none d-md-inline col-md-6 col-lg-2">
+        <aside class=" d-none d-lg-inline col-md-6 col-lg-2">
 
             <h4 class="text-swanky">pages</h4>
 
@@ -67,11 +66,14 @@ const brands: string[] = [
 
         </aside>
 
-        <aside class="col-md-6 col-lg-4">
-            <h4 class="text-swanky">Location & Contact</h4>
+        <aside class="col-md-6 col-md-4">
+            <h4 class="text-swanky">Contacts & Location</h4>
+            
+            <p>+ 2309-34-56 <br/> Germany,Serra loume</p>
+
             <p class="nav justify-content-center justify-content-md-start gap-2">{
                 socalLinks.map((item) => (
-                    <a style="height: 2.2rem; width:2.2rem" class="nav align-items-center justify-content-center bg-info fs-5 rounded-circle" href={item.link}>
+                    <a style="height: 1.6em; width:1.6em" class="nav align-items-center justify-content-center bg-info rounded-circle" href={item.link}>
                         <i class={`bi bi-${item.class} text-white`} />
                     </a>
                 ))

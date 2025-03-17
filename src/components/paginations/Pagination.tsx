@@ -24,7 +24,7 @@ export default function Pagination(props:Props): JSX.Element {
     }
 
 
-    return (<section id="paginate" class="col-12 nav justify-content-between gap-2">
+    return (<section id="paginate" class="col-12 nav justify-content-between gap-2 text-swanky">
 
         <div class="d-flex align-items-center gap-2">
             <select onChange={perPageChange} style={"max-height:3rem;"} name="itemsPerPage" class="btn btn-sm border-0" >
@@ -36,7 +36,7 @@ export default function Pagination(props:Props): JSX.Element {
             items per page
         </div>
 
-        <div class="border-top border-2">
+        <div>
             <For each={pageMaps()}>
                 {item => <button onClick={_ => changePage(item)} class={`btn ${item == parseInt($page().page) ? "text-bg-primary" : ""}`}>
                     {item + 1}
