@@ -17,7 +17,7 @@ export default function ProductCard(props:Props): JSXElement {
     return (<div class="product-card card position-relative overflow-x-hidden">
 
         <div class="options d-flex flex-column gap-2 position-absolute">
-            <button class="btn bg-body shadow-lg">
+            <button class="btn bg-body  shadow-lg">
                 <i class="bi bi-handbag"></i>
             </button>
 

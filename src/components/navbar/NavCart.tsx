@@ -12,10 +12,11 @@ function NavCart() {
   const mouseLeave = () => setOpen(false);
 
   return (
-    <div onMouseLeave={mouseLeave} class="btn-group position-relative">
+    <div onMouseLeave={mouseLeave} class="btn-group">
 
-      <button onClick={changeOpen} type="button" class="btn" aria-expanded="false">
-        <i class="bi bi-handbag"></i>
+      <button onClick={changeOpen} type="button" class="btn position-relative" aria-expanded="false">
+        <i class="bi bi-handbag fs-6"></i> 
+        <small class="badge text-bg-primary rounded-pill position-absolute me-5 mt-3">{ $cart().length > 0 ? $cart().length: ""  }</small>
       </button>
 
       <Show when={open()}>

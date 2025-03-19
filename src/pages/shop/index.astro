@@ -15,10 +15,24 @@ const headerInfo = {
 
 const products = await getCollection("products");
 const list= await products.map( item => item.data );
+const categories:string[] = [];
+const  brands:string[] = [];
+
+for(let x of products  ) {
+    const c:string = x.data.category;
+    const b:string = x.data.brand;
+    if ( !brands.includes(b) ) brands.push(b);
+    if ( !categories.includes(c)) categories.push(c);
+
+}
 ---
 
-<Layout {...headerInfo}> 
+<Layout {...headerInfo}>
+    
     <BreadCrumb />
-    <ShopPage products={list} client:load />
+
+    <ShopPage brands={brands} categories={categories} products={list} client:load />
+    
     <TopProducts />
+
 </Layout>

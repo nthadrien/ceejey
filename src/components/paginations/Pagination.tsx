@@ -1,6 +1,7 @@
 
+import type { SearchQueryType } from "@components/products/search.type";
 import { useStore } from "@nanostores/solid";
-import { For, type JSX } from "solid-js";
+import { createSignal, For, onMount, type JSX } from "solid-js";
 import { changeData, page } from "src/stores/users";
 
 interface Props {
@@ -10,6 +11,20 @@ interface Props {
 export default function Pagination(props:Props): JSX.Element {
 
     const $page = useStore(page);
+
+    const [query, setQuery] = createSignal<SearchQueryType>();
+    
+      onMount(() => {
+        const details:any = Object.fromEntries(new URLSearchParams(window.location.search));
+        setQuery({ 
+          page : parseInt(details?.page) ?? 1,
+          size: parseInt(details?.size) ?? 4,
+          category: details?.category ?? "none",
+          minP : parseInt(details?.minP) ?? 1,
+          maxP : parseInt(details?.maxP) ?? 100,
+          promo : details.promo ?? 'off' ,
+        });
+      });
 
     const perPageChange = (e:any) => changeData("size", e.target.value.toString() );
     const changePage = (e:number) => changeData("page", e.toString() );

@@ -19,7 +19,7 @@ function SearchNav(props:Props): JSX.Element {
     })
 
 
-    return (<nav class="nav justify-content-between fw-semibold align-items-center gap-2">
+    return (<nav class="nav justify-content-between fw-semibold align-items-center gap-2 px-2">
         <p>{seen()} of  {props.size} items</p>
 
         <p class="d-flex align-items-center">

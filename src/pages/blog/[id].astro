@@ -1,10 +1,12 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection, render } from "astro:content";
+import { getCollection,getEntries, render } from "astro:content";
+// components imports
 import Layout from "../../layouts/ELayout.astro";
-import { getEntries } from "astro:content";
 import BlogCard from "../../components/cards/BlogCard.astro";
 import NewsLetter from "@components/forms/NewsLetter.astro";
+import BreadCrumb from "@components/headers/BreadCrumb.astro";
+import TableOfContent from "@components/headers/TableOfContent.astro";
 
 
 export const getStaticPaths = (async () => {
@@ -18,7 +20,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { Content, remarkPluginFrontmatter  } = await render(post);
+const { Content, remarkPluginFrontmatter, headings  } = await render(post);
 
 const relatedPosts = await getEntries(post.data.relatedPosts);
 
@@ -28,54 +30,74 @@ const headerInfo = {
 	title: post.data.title,
 	keywords: post.data.tags,
 };
+
+console.log( remarkPluginFrontmatter );
 ---
 
 <Layout {...headerInfo}>
 
-    <section style="max-width: 720px;" class="container mx-auto">
+    <BreadCrumb page="" />
+
+    
+
+    <main class="container mx-auto my-3 position-relative">
+
+        <section class="row">
+
+            <aside class="col-lg-8">
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <p> 
+                    {remarkPluginFrontmatter.minutesRead} 
+                    <span class="vr mx-3" />  
+                    {post.data.publishDate.toDateString().slice(4)}
+                </p>
+
+                <img class="mb-4 w-100 ratio ratio-16x9" src={post.data.image.src} alt={post.data.image.alt} alt="blog pic" />
+
+            </aside>
+
+            <aside class="col-lg-4">
+
+                <h4 class="text-swanky fw-bold my-3">Blog Tags:</h4>
+
+                <p> 
+                    {post.data.tags.map( tag => <a href={`/blog/?page=1&tag=${tag}`} class="badge bg-info text-monospace text-capitalize mx-2">{tag}</a>)}
+                </p>
+
+                <TableOfContent headings={headings} />
+            </aside>
+            
+        </section>
+
         
 
-        <img class="w-100 object-fit-cover mb-4" src={post.data.image.src} alt={post.data.image.alt} alt="">
-
-        <nav class="nav justify-content-between gap-2 border-bottom" aria-label="tags list">
-
-            <div>
-                {remarkPluginFrontmatter.minutesRead} <i class="bi bi-dot"></i> {post.data.publishDate.toDateString()} <br/>
-                <b>Tags:</b> {post.data.tags.map( tag => <a class="me-2 small text-info" href={`/post/${tag}-0`}>{tag}</a>)}
-            </div>
-
-            <div class="nav col-12 gap-2">
-                <strong>Written by: </strong> <p class="smaller">{post.data.author} <i class="bi bi-dot"></i> {post.data.authorContact} <i class="bi bi-dot"></i> health care specialist</p>
-            </div>
-
-        </nav>
-
-        <main class="content mt-2">
+        <article class="col-lg-8 ms-0">
             <Content />
-        </main>
+        </article>
+
+    </main>
+
+
+    <section class="container-sm mx-auto">
+
 
         <button onclick="javascript:window.history.back()" class="btn btn-sm text-primary">
             <i class="bi bi-arrow-left"></i> Return
         </button>
 
 
-
-
         <NewsLetter />
 
-        <section class="container-sm">
+        <h1 class="my-4">Similar Posts:</h1>
 
-            <h1 class="my-4">Similar Posts:</h1>
+        <div class="row row-cols-2 g-3">
+            { relatedPosts[0] && relatedPosts.map( post => <div style="max-width: 26rem;" class="col">
+                <BlogCard post={post} />
+            </div> )}
 
-            <div class="row row-cols-2 g-3">
-                { relatedPosts[0] && relatedPosts.map( post => <div style="max-width: 26rem;" class="col">
-                    <BlogCard post={post} />
-                </div> )}
-
-                { !relatedPosts[0] ?  <h3 class="text-swanky">Sorry no related post available.</h3> : <></> }
-            </div>
-        </section>
-
+            { !relatedPosts[0] ?  <h3 class="text-swanky">Sorry no related post available.</h3> : <></> }
+        </div>
     </section>
 
     
@@ -97,7 +119,12 @@ const headerInfo = {
         font-size: 1.1rem;
     }
 
+    h1,h2,h3,h4 {
+        margin: 0.9rem 0;
+    }
+
     img {
+        object-fit: cover;
         margin: auto;
     }
 
@@ -105,8 +132,7 @@ const headerInfo = {
         white-space: 12px;
 
         & img {
-            border-radius: 1rem;
-            width: 100%;
+            border-radius: 0.4rem;
             object-fit: contain;
         }
     }

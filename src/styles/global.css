@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: Pacifico;
     src: url('/fonts/Pacifico-Regular.ttf');
@@ -16,14 +15,18 @@
 }
 
 :root {
-    --pry-clr: #a6659b; /* (Dusty Rose-Purple) */
-    --snd-clr: #e9dac1; /* (light sand) */
-    --acn-clr: rgb(194, 178, 128); /* (taupe) */
-    --neutral-clr: #f8f8f8; /* Off white */
+    --pry-clr: #a6659b;
+    /* (Dusty Rose-Purple) */
+    --snd-clr: #e9dac1;
+    /* (light sand) */
+    --acn-clr: rgb(194, 178, 128);
+    /* (taupe) */
+    --neutral-clr: #f8f8f8;
+    /* Off white */
     /* bootstrap variables */
     --bs-primary: var(--pry-clr) !important;
     --bs-primary-rgb: 166, 101, 155 !important;
-    
+
     --bs-secondary: var(--snd-clr) !important;
     --bs-secondary-rgb: 233, 218, 193 !important;
 
@@ -31,6 +34,7 @@
     --bs-info-rgb: 194, 178, 128 !important;
 
 }
+
 .btn-primary {
     background-color: var(--pry-clr);
     border: var(--pry-clr);
@@ -62,7 +66,7 @@ body {
 }
 
 .text-swanky {
-    font-family: Swanky ,'Courier New', Courier, monospace;
+    font-family: Swanky, 'Courier New', Courier, monospace;
 }
 
 .text-mono {
@@ -77,22 +81,14 @@ body {
     font-size: x-small;
 }
 
-a, a.nav-link, .nav-link {
+a,
+a.nav-link,
+.nav-link {
     text-decoration: none;
     color: inherit;
 }
 
-
-.line-clamp-3 {
-    height: 3rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.glow-item:has( input:checked ) {
+.glow-item:has(input:checked) {
     background-color: var(--acn-clr);
     color: var(--neutral-clr);
     font-weight: bolder;
@@ -102,6 +98,7 @@ a, a.nav-link, .nav-link {
 .product-card {
     border: 0;
 }
+
 .product-card .options {
     opacity: 0;
     top: 15%;
@@ -110,7 +107,7 @@ a, a.nav-link, .nav-link {
 
 .product-card:hover .options {
     opacity: 1;
-    transform: translateX(8%);
+    transform: translateX(10%);
     transition: all 0.5s linear;
 }
 
@@ -123,7 +120,7 @@ a, a.nav-link, .nav-link {
 #toast {
     position: fixed;
     top: 20%;
-    right:5vw;
+    right: 5vw;
     max-width: 600px;
     opacity: 0.6;
 }
@@ -135,3 +132,35 @@ a, a.nav-link, .nav-link {
 /* .btn, .form-control, .form-select {
     border-radius: 0;
 }  */
+
+
+.customtip {
+    position: relative;
+    display: inline-block;
+    /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.customtip .tooltiptext {
+    visibility: hidden ;
+    width: fit-content;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 0.2rem;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    bottom: 0;
+    right: 0%;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.customtip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.btn-check:checked ~ .btn {
+    background-color: var(--pry-clr);
+    color: var(--neutral-clr);
+}

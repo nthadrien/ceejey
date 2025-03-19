@@ -1,0 +1,23 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+
+interface Props {
+    headings: MarkdownHeading[];
+}
+
+
+const { headings } = Astro.props;
+
+const depth2 = headings.filter( (item) => item.depth <= 2 );
+---
+
+<h4 class="text-swanky fw-bold my-3">Table Of Content</h4>
+
+<ul id="table-of-content" class="d-flex flex-column gap-1 postion-lg-fixed">
+    {headings[0] && depth2.map( tap => <li>
+        <a  href={"#"+tap.slug} class="nav-link p-0 d-flex align-items-center gap-2">
+            <span>{tap.text}</span>
+        </a>
+    </li>)}
+</ul>
