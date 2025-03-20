@@ -7,8 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nthadrien.github.io',
-  base: 'ceejey',
+  site: 'https://nthadrien.github.io', // base: 'ceejey',
   // markdown settings
   markdown: {
       remarkPlugins: [
@@ -17,6 +16,6 @@ export default defineConfig({
   },
   integrations: [
     solidJs({ devtools: true }), 
-    // sitemap()
+    sitemap()
   ]
 });

@@ -1,5 +1,5 @@
 {
-  "name": "ceejey-ssg",
+  "name": "ceejey",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -8,8 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "host": "vite --host",
-    "sass": "sass --watch ./global.scss ./src/styles/custom.css",
-    "deploy": "gh-pages -d dist"
+    "sass": "sass --watch ./global.scss ./src/styles/custom.css"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.0",
@@ -25,8 +24,5 @@
     "remark-toc": "^9.0.0",
     "sass": "^1.86.0",
     "solid-js": "^1.9.5"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
   }
 }
