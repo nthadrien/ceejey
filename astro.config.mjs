@@ -9,6 +9,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // site: 'https://stargazers.club',
+  site: 'https://nthadrien.github.io',
+  base: '/ceejey-ssg',
+  // markdown settings
   markdown: {
       remarkPlugins: [
         remarkReadingTime,
