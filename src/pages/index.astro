@@ -9,6 +9,7 @@ import NewsLetter from '@components/forms/NewsLetter.astro';
 import BlogCard from '@components/cards/BlogCard.astro';
 import ProductCard from '@components/cards/ProductCard.astro';
 
+
 const headerInfo = {
 	description : "Home page for show casing many things.",
 	title: "Home Page",
@@ -54,38 +55,106 @@ const products = await getCollection('products');
 		</div>
 	</header>
 
-	<section class="container mx-auto d-flex flex-column gap-3 my-4">
+	<section class="container mx-auto d-flex flex-column gap-3 my-4 py-3 px-2">
 
 		<h4 class="text-center"> Brand showcase</h4>
+		<p class="text-center">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ea excepturi sint, 
+			quidem repellat eligendi dolores quam cum incidunt.
+		</p>
 
-		<div class="row">
-			{products.slice(0,3).map( (item)=> <div class="col col-lg-4">
-				<ProductCard product={item} />
-			</div>
-		)}
+		<div class="row row-cols-1 row-cols-lg-3 g-1 g-lg-2">
+
+			<aside class="col d-flex flex-column gap-2">
+
+				<img src="./images/website/index-1.jpg" alt="i">
+
+				<img src="./images/website/index-2.jpg" alt="i">
+
+			</aside>
+
+
+
+			<aside class="col">
+				<img src="./images/website/about-1.jpg" class="h-100 w-100 object-fit-cover" alt="i">
+			</aside>
+
+
+			<aside class="col d-flex flex-column gap-2">
+
+				<img src="./images/website/index-2.jpg" alt="i">
+
+				<img src="/images/website/index-1.jpg" alt="i">
+
+			</aside>
 
 		</div>
 
 
-		<aside>
-
-		</aside>
 
 	</section>
 
-	<section class="container-sm mx-auto">
 
-		<div class="nav justify-content-between pb-1 mb-3">
-			<span class="h4 border-bottom fw-bold">Latest Posts</span> 
-			<a href="/blog">more post <i class="bi bi-arrow-right"></i></a>
+	<section class="container-sm mx-auto mb-3 py-5">
+
+		
+
+		<nav class="nav justify-content-between align-items-center border-bottom">
+
+			<h6>Popular Categories</h6>
+
+			<div class="nav nav-underline">
+				{[1,2].map( cat =>  <button class="nav-link" aria-current="page"> cateory {cat}</button> )}
+			</div>
+		</nav>
+
+
+
+		<div class="row py-3 px-2">
+			{products.slice(0,4).map( (item)=> <div class="col col-lg-3">
+				<ProductCard product={item} />
+			</div>)}
 		</div>
 
-		<div class="d-flex justify-content-start gap-3 overflow-x-auto">
+	</section>
 
-			{posts.slice(0,4).map( post => <div style="max-width: 320px;" class="flex-shrink-0">
-				<BlogCard post={post} />
+
+	<section class="container-sm mx-auto row row-cols-1 row-cols-lg-2 g-2 g-lg-4 mt-2 py-5">
+
+		<div class="col">
+			<img src="./images/website/index-2.jpg" class="h-100 w-100 object-fit-cover"  alt="i">
+		</div>
+
+		<div class="col nax flex-column justify-content-center">
+			<p class="fw-bold text-pacifico fs-5">Funny Thing here</p>
+			<p>
+				Quod nesciunt architecto minus quo. 
+				Sint rem accusantium consequuntur culpa cupiditate aperiam, 
+				omnis sequi quaerat necessitatibus asperiores officia eius incidunt, quos temporibus.
+			</p>
+
+			<ul>
+				{[1,2].map( item => <li>
+					<h6>Lorem {item}</h6>
+					<p>Maiores impedit! Deserunt voluptatem sed nobis quae assumenda aspernatur natus officia doloremque?</p>
+				</li>)}
+			</ul>
+
+		</div>
+
+	</section>
+
+	<section style="max-width: 1080px;" class="container-sm mx-auto py-3">
+
+		<div class="nav justify-content-between pb-1 mb-3">
+			<span class="fs-5 border-bottom fw-bold">Latest Posts</span> 
+			<a class="icon-link icon-link-hover" href="/blog">more post <i class="bi bi-arrow-right"></i></a>
+		</div>
+
+		<div class="d-flex justify-content-between gap-2 overflow-x-auto hide-scroll-bar ">
+			{posts.slice(0,3).map( post => <div style="max-width:21rem;" class="flex-shrink-0">
+				<BlogCard displayStyle={3} post={post} />
 			</div> )}
-
 		</div>
 
 	</section>

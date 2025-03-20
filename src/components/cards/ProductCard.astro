@@ -23,7 +23,7 @@ const { product } = Astro.props;
 
     </div>
 
-    <img style="height: 200px;" src={`/images/products/${product.data.images[0]}`} alt={`${product.data.name}`} class="card-img-top rounded-0 object-fit-contain" />
+    <img style="height: 200px;" src={`/images/products/${product.data.images[0]}`} alt={`${product.data.name}`} class="rounded-0 object-fit-contain" />
     <a href={`/shop/product#${product.data.id}-${product.data.name}`} class="card-body text-center lh-sm">
         <p class="card-subtitle smaller fw-light">{product.data.category}</p>
         <p class="card-title">{product.data.name}</p>

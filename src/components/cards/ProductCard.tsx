@@ -24,7 +24,7 @@ export default function ProductCard(props:Props): JSXElement {
         </Show>
 
         <div class={props.displayStyle === 2 ? "col-4 col-lg-5" : "col"}>
-            <img style="height: 220px;" src={`/images/products/${props.images[0]}`} alt={`${props.name}`} class="card-img-top rounded-2 ratio ratio-2x1 object-fit-contain" />
+            <img style="height: 220px;" src={`/images/products/${props.images[0]}`} alt={`${props.name}`} class="rounded-0 object-fit-contain" />
         </div>
 
         <div  class="card-body col lh-sm">
