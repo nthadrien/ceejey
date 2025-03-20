@@ -1,18 +1,23 @@
 ---
 const pages: { name:string , link:string}[] = [
     { name:"about" , link:"/about/"},
-    { name:"shop" , link:"/products/"},
+    { name:"shop" , link:"/shop??page=0&size=12&"},
     { name:"Services" , link:"/about#services"},
-    { name:"blog",link:"/blog"}
+    { name:"blog",link:"/blog"},
+    {name:"contact us" ,link:"/contacts"},
+    {name:"terms & conditions" ,link:"/contacts"}
 ];
+
+const year = new Date().getFullYear();
 
 ---
 
-<aside class="list-unstyled nav justify-content-between align-items-center gap-2 gap-lg-4 text-pacifico fw-light">
+<small class="list-unstyled nav justify-content-between align-items-center gap-2 gap-lg-4 smaller">
 
-    <p class="text-center  text-md-start">
-        {pages.map( item => <a href={item.link} class="d-inline text-info rounded-2 me-2 text-capitalize"> {item.name}</a>)}
+    <span>&copy; {year} Cee-jey. All rights reserved.</span>
+
+    <p class="text-center  text-pacifico text-md-start">
+        {pages.map( item => <a href={item.link} class="d-inline text-primary rounded-2 me-2 text-capitalize"> {item.name}</a>)}
     </p>
-
-    <span>&copy; 2025 Cee-jey, Inc. All rights reserved.</span>
-</aside>
+   
+</small>

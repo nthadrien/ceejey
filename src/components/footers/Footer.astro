@@ -40,10 +40,9 @@ const brands: string[] = [
         class="container-xl row justify-content-between g-2 g-lg-4 text-center text-md-start"
     >   
 
-        <aside class="col-12 col-md-4">
+        <aside class="col-12 col-md-6 col-lg-4">
 
-
-            <h2>
+            <h2 class="mb-3">
                 <WbLogo />
             </h2>
             <p class="smaller">
@@ -54,11 +53,11 @@ const brands: string[] = [
         </aside>
 
 
-        <aside class=" d-none d-lg-inline col-md-6 col-lg-2">
+        <aside class=" d-none d-lg-inline col-lg-3">
 
-            <h4 class="text-swanky">pages</h4>
+            <h3 class="text-swanky mb-3">pages</h3>
 
-            <ul class="nav flex-md-column gap-2">
+            <ul class="nav flex-md-column gap-1">
                 {pages.map( item => <li class="nav-item">
                     <a href={item.link} class="nav-link text-capitalize p-0">categories</a>
                 </li>)}
@@ -66,18 +65,24 @@ const brands: string[] = [
 
         </aside>
 
-        <aside class="col-md-6 col-md-4">
-            <h4 class="text-swanky">Contacts & Location</h4>
+        <aside class="col-md-6 col-lg-4">
+            <h3 class="text-swanky mb-3">Contacts & Location</h3>
             
-            <p>+ 2309-34-56 <br/> Germany,Serra loume</p>
-
-            <p class="nav justify-content-center justify-content-md-start gap-2">{
-                socalLinks.map((item) => (
-                    <a style="height: 1.6em; width:1.6em" class="nav align-items-center justify-content-center bg-info rounded-circle" href={item.link}>
-                        <i class={`bi bi-${item.class} text-white`} />
-                    </a>
-                ))
-            }</p>
+            <ul class="nav flex-column gap-1">
+                <li> 
+                    <i class="bi bi-phone me-2"></i> + 2309-34-56 
+                </li>
+                <li> 
+                    <i class="bi bi-geo-alt me-2"></i> Germany,Serra loume
+                </li>
+                <li class="mt-2">
+                    { socalLinks.map((item) => (
+                        <a style="height: 2rem;width:2rem;" class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gray-50 me-2" href={item.link}>
+                            <i class={`fs-5 bi bi-${item.class} text-muted`} />
+                        </a>
+                    ))}
+                </li>
+            </ul>
         </aside>
 
 

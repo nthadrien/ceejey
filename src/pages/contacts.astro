@@ -3,6 +3,7 @@ import Header from "@components/headers/Headers.astro";
 import LastFooter from "@components/footers/LastFooter.astro";
 import Layout from "@layouts/ELayout.astro";
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
+import NewsLetter from "@components/forms/NewsLetter.astro";
 
 const headerInfo = {
 	description : "We will get to you as soon as possible",
@@ -20,7 +21,7 @@ const link = Astro.url
 
 	<Header title={headerInfo.title} description={headerInfo.description} />
 
-    <section style="max-width: 968px;" class="container row g-2 align-items-center mx-auto p-2">
+    <section style="max-width: 968px;" class="container row g-2 align-items-center mx-auto p-2 mb-4">
 
 		<div class="col-12 mb-3">
 			<span>We are Open and online:</span> 
@@ -73,6 +74,8 @@ const link = Astro.url
 		</form>
         
     </section>
+
+	<NewsLetter />
 
 
 </Layout>

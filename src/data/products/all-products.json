@@ -11,7 +11,8 @@
         "reviews": ["1", "2"],
         "images": ["bela-2.webp","olaolex-1.webp","ogax-1.webp","decros-2.webp"],
         "price":12.2,
-        "relatedProducts":[]
+        "relatedProducts":[],
+        "discount":2
       },
       {
         "id": 2,
@@ -128,7 +129,8 @@
         "reviews": [],
         "images": ["herbal-1.webp","decros-2.webp"],
         "price":6.99,
-        "relatedProducts":["1","2"]
+        "relatedProducts":["1","2"],
+        "discount":1.2
       }
     ]
   }

@@ -34,7 +34,9 @@ const headerInfo = {
                     maxime unde sint esse. Vel minima earum modi necessitatibus
                     deserunt molestiae numquam officia odio.
                 </p>
-                <a class="text-primary text-swanky" href="/blog">See blog post <i class="bi bi-arrow-right"></i></a>
+                <a class="text-primary text-swanky" href="/blog"
+                    >See blog post <i class="bi bi-arrow-right"></i></a
+                >
             </aside>
 
             <img
@@ -48,12 +50,8 @@ const headerInfo = {
         <section
             class="container-fluid bg-body-tertiary p-2 py-4 mx-auto d-flex flex-column align-items-center justify-content-center gap-3"
         >
-
             <aside class="text-center">
-
-                <h2 class="text-pacifico text-primary">
-                    Services
-                </h2>
+                <h2 class="text-pacifico text-primary">Services</h2>
 
                 <p>
                     Recusandae enim eligendi libero magni odio consectetur nobis
@@ -62,56 +60,113 @@ const headerInfo = {
                 </p>
             </aside>
 
-
             <aside class="row row-cols-1 row-cols-md-3 justify-content-evenly">
-
-                {[1,2,3].map( o => <div style="max-width: 380px;" class="col text-center">
-                    <div style="height: 56px;width:56px;" class="border border-primary text-primary border-2 rounded-circle mx-auto">
-                        <i class="fs-3 bi bi-feather"></i>
-                    </div>
-                    <p>
-                       Hic velit laudantium facilis nostrum modi ex soluta illo libero veritatis architecto excepturi reprehenderit, fuga quaerat cupiditate nobis dolorem explicabo expedita! Inventore.  
-                    </p>
-
-                </div>)}
-            </aside>
-
-        </section>
-
-       <div class="container-fluid">
-
-        <section class="container row py-3 mx-auto">
-
-            <aside class="col-md-4 col-lg-5">
-                <p class="h3 text-pacifico text-primary">Frequently Asked Questions</p>
-                <p>If you can't find the answers your are looking for, Please reach to us through 
-                    the <a class="text-primary fw-bold" href="/contacts">Contact Us</a> page.
-                    We will respond as soon as possible.
-                </p>
-            </aside>
-
-            <aside
-                style="max-width: 968px;"
-                class="col-md-8 col-lg-7 d-flex flex-column gap-1 mx-auto"
-            >
-
                 {
-                    [1,2,3].map( item => <div class={ `p-1 px-2 ${item > 1 ?"border-top":""}`}>
-
-                        <h5>Question here</h5>
-                        <p class="">
-                            Answer to auestion : Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum fuga tempora autem dolorem quam delectus, ab repudiandae qui quaerat cupiditate! Ullam excepturi totam ipsa quo illum harum ex voluptatem assumenda.
-                        </p>
-
-                    </div>)
+                    [1, 2, 3].map((o) => (
+                        <div style="max-width: 380px;" class="col text-center">
+                            <div
+                                style="height: 56px;width:56px;"
+                                class="border border-primary text-primary border-2 rounded-circle mx-auto"
+                            >
+                                <i class="fs-3 bi bi-feather" />
+                            </div>
+                            <p>
+                                Hic velit laudantium facilis nostrum modi ex
+                                soluta illo libero veritatis architecto
+                                excepturi reprehenderit, fuga quaerat cupiditate
+                                nobis dolorem explicabo expedita! Inventore.
+                            </p>
+                        </div>
+                    ))
                 }
             </aside>
         </section>
-       </div>
 
+        <section class="container-fluid bg-body-tertiary">
+            <div
+                class="container px-4 py-5 row row-cols-1 row-cols-md-2 align-items-md-center g-5 mx-auto"
+            >
+
+            <div class="col d-flex flex-column align-items-start gap-2">
+                <h2 class="text-primary text-pacifico text-body-emphasis">
+                    May be team or stills services
+                </h2>
+                <p class="text-body-secondary">
+                    Paragraph of text beneath the heading to explain the
+                    heading. We'll add onto it with another sentence and
+                    probably just keep going until we run out of words.
+                </p>
+            </div>
+
+            <div class="col row row-cols-1 row-cols-sm-2 g-4">
+                {
+                    [1,3,2,4].map((item) => (
+                        <div class="col d-flex flex-column gap-2">
+                            <div
+                                style="width: fit-content;height:fit-content;"
+                                class="p-2 nav align-items-center justify-content-center text-bg-primary bg-gradient fs-5 rounded-3"
+                            >
+                                <i class="bi bi-feather" />
+                            </div>
+                            <div>
+                                <h4 class="fw-semibold mb-0 text-body-emphasis">
+                                    Featured title
+                                </h4>
+                                <p class="text-body-secondary">
+                                    Paragraph of text beneath the heading to
+                                    explain the heading.
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+                
+            </div>
+
+        </section>
     </main>
 
-    <Brands />
+
+<div class="container-fluid">
+    <section class="container row py-3 mx-auto">
+        <aside class="col-md-4 col-lg-5">
+            <p class="h3 text-pacifico text-primary">
+                Frequently Asked Questions
+            </p>
+            <p>
+                If you can't find the answers your are looking for, Please reach
+                to us through the <a
+                    class="text-primary fw-bold"
+                    href="/contacts">Contact Us</a
+                > page. We will respond as soon as possible.
+            </p>
+        </aside>
+
+        <aside
+            style="max-width: 968px;"
+            class="col-md-8 col-lg-7 d-flex flex-column gap-1 mx-auto"
+        >
+            {
+                [1, 2, 3].map((item) => (
+                    <div class={`p-1 px-2 ${item > 1 ? "border-top" : ""}`}>
+                        <h5>Question here</h5>
+                        <p class="">
+                            Answer to auestion : Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Eum fuga tempora autem
+                            dolorem quam delectus, ab repudiandae qui quaerat
+                            cupiditate! Ullam excepturi totam ipsa quo illum
+                            harum ex voluptatem assumenda.
+                        </p>
+                    </div>
+                ))
+            }
+        </aside>
+    </section>
+</div>
+
+<Brands />
 
 </Layout>
 

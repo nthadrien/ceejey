@@ -1,43 +1,32 @@
 
 import type { SearchQueryType } from "@components/products/search.type";
-import { useStore } from "@nanostores/solid";
-import { createSignal, For, onMount, type JSX } from "solid-js";
-import { changeData, page } from "src/stores/users";
+import { For, type JSX } from "solid-js";
 
 interface Props {
-    size: number
+    listSize: number, // list size per pages
+    info : SearchQueryType
 }
 
 export default function Pagination(props:Props): JSX.Element {
 
-    const $page = useStore(page);
+    const perPageChange: JSX.EventHandler<HTMLSelectElement , Event > = (e) => {
+        const goTO = new URLSearchParams( {...props.info, size : parseInt(e.currentTarget.value), page:0 } as {}).toString();
+        window.location.search = "?"+goTO;
+    }
 
-    const [query, setQuery] = createSignal<SearchQueryType>();
-    
-      onMount(() => {
-        const details:any = Object.fromEntries(new URLSearchParams(window.location.search));
-        setQuery({ 
-          page : parseInt(details?.page) ?? 1,
-          size: parseInt(details?.size) ?? 4,
-          category: details?.category ?? "none",
-          minP : parseInt(details?.minP) ?? 1,
-          maxP : parseInt(details?.maxP) ?? 100,
-          promo : details.promo ?? 'off' ,
-        });
-      });
-
-    const perPageChange = (e:any) => changeData("size", e.target.value.toString() );
-    const changePage = (e:number) => changeData("page", e.toString() );
+    const changePage = (e:number) => {
+        const goTO = new URLSearchParams( {...props.info, page : e } as {}).toString();
+        window.location.search = "?"+goTO;
+    }
 
     const pageMaps = () => {
-        const numberOfPages = Math.ceil(props.size/parseInt($page().size));
+        const numberOfPages = Math.ceil(props.listSize/props.info.size);
         let p:number[] = [];
         for ( let j=0; j < numberOfPages ; j++ ) {
             p.push(j);
         }
         return p;
     }
-
 
     return (<section id="paginate" class="col-12 nav justify-content-between gap-2 text-swanky">
 
@@ -53,7 +42,7 @@ export default function Pagination(props:Props): JSX.Element {
 
         <div>
             <For each={pageMaps()}>
-                {item => <button onClick={_ => changePage(item)} class={`btn ${item == parseInt($page().page) ? "text-bg-primary" : ""}`}>
+                {item => <button onClick={_ => changePage(item)} class={`btn ${item == props.info.page ? "btn-primary" : ""}`}>
                     {item + 1}
                 </button>}
             </For>

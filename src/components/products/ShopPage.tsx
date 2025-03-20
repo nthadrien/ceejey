@@ -1,94 +1,86 @@
 
-import { useStore } from "@nanostores/solid";
-import { Show, createMemo, createSignal, For, onMount, Suspense, type JSX } from "solid-js";
+import { Show, createMemo, createSignal, For, onMount, type JSX } from "solid-js";
 
 // components tsx:
 import FilterProducts from "./FilterProducts";
 import SearchNav from "./SearchNav";
-import { page } from "src/stores/users";
 import ProductCard from "@components/cards/ProductCard";
 import Pagination from "@components/paginations/Pagination";
 import { type ShopProps, type SearchQueryType, initialQuery } from "./search.type";
+import LoadingSreen from "@components/LoadingScreen";
 
 
 
 
 
-function ShopPage (props:ShopProps) : JSX.Element {
-  
-  const $page = useStore(page);
+function ShopPage(props: ShopProps): JSX.Element {
 
-  const [myQuery , setMyQuery ] = createSignal<SearchQueryType>(initialQuery);
-  const [ loading , setLoading ] = createSignal<boolean>(true);
-  const [ style , setStyle ] = createSignal<number>(1);
+  const [myQuery, setMyQuery] = createSignal<SearchQueryType>(initialQuery);
+  const [loading, setLoading] = createSignal<boolean>(true);
+  const [style, setStyle] = createSignal<number>(2);
 
-  onMount(()=>{
+  onMount(() => {
     const data = Object.fromEntries(new URLSearchParams(window?.location.search));
-    const newOne = { 
-      page:  data.page ? parseInt(data.page) : 1,
-      size:  data.size ? parseInt(data.size) : 1,
+    const newOne = {
+      page: data.page ? parseInt(data.page) : 0,
+      size: data.size ? parseInt(data.size) : 1,
       category: data.category ? data.category : "none",
-      minP:  data.minP ? parseInt(data.minP) : 1,
-      maxP:  data.maxP ? parseInt(data.maxP) : 100,
-      promo : data.promo?? "none",
-      sortby : data.sorty ?? "none"
+      minP: data.minP ? parseInt(data.minP) : 1,
+      maxP: data.maxP ? parseInt(data.maxP) : 100,
+      promo: data.promo ?? "none",
+      sortby: data.sorty ?? "none"
     };
-
-    console.log("mounting to:", newOne, window.location.search);
     setMyQuery(newOne)
   });
 
-  const filteredProduct = createMemo( ()=>{
-    setLoading(true)
+  const filteredProducts = createMemo(() => {
     const catgo = myQuery().category;
-    // simulate delay
-    new Promise(r => setTimeout( () =>setLoading(false) , 3000));
-    
-    return props.products.filter( item => catgo == "none" ? true : item.category === catgo  );
+    new Promise(r => setTimeout(() => setLoading(false), 600));
+    return props.products.filter(item => ["none", "null", "undefined", null, undefined].includes(catgo) ? true : item.category === catgo);
   });
 
-  const startAt = () => myQuery().page ?? 0;
-  const endAt = () => startAt() + myQuery().size ;
-  const changeStyle = (a:number) => setStyle(a);
-  
-  return (<Show when={!loading()} fallback={<p>Loading ..........</p>}>
+  const startAt = () => myQuery().page * myQuery().size;
+  const endAt = () => startAt() + myQuery().size;
+  const changeStyle = (a: number) => setStyle(a);
+
+  return (<Show when={!loading()} fallback={<LoadingSreen />}>
+
     <main style="max-width: 1280px;" class="container g-2 row mx-auto">
 
-      
-      <SearchNav size={filteredProduct().length} />
+      <SearchNav displayStyle={style()} changeStyle={changeStyle} current={myQuery()} size={filteredProducts().length} />
 
-      <aside class="col-md-3 bg-body">
+      <aside class="col-md-3">
         <FilterProducts initial={myQuery()} brands={props.brands} categories={props.categories} />
       </aside>
 
-      <section class="col-md-9">
+      <section class="col-md-9 nav flex-column justify-content-between ">
 
-        <p>{startAt()} - {endAt()}</p>
+        <div class={`row  ${style() === 1 ? "row-cols-2 row-cols-lg-3 row-cols-xl-4" : "row-cols-1 row-cols-xl-2"} g-1 g-lg-2 mb-4 p-2`}>
 
-        <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-1 g-lg-2 mb-4">
-
-          <For each={filteredProduct().slice( startAt() , endAt() ) } >
-            { item => <div class="col">
+          <For each={filteredProducts().slice(startAt(), endAt())} >
+            {item => <div class="col">
               <ProductCard
-                id = {item.id}
+                id={item.id}
                 name={item.name}
-                price ={item.price}
+                price={item.price}
                 images={item.images}
                 category={item.category}
                 brand={item.brand}
+                discount={item.discount}
+                displayStyle={style()}
+                description={item.description}
               />
             </div>}
           </For>
-          
+
         </div>
 
-        <Pagination size={filteredProduct().length} />
+        <Pagination info={myQuery()} listSize={filteredProducts().length} />
+
       </section>
 
-
-
-      </main>
-    </Show>);
+    </main>
+  </Show>);
 
 }
 

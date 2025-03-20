@@ -9,24 +9,24 @@ const { product } = Astro.props;
 ---
 
 
-<div class="product-card card bg-body-tertiary rounded-0 border-0 p-1 position-relative overflow-x-hidden">
+<div class="product-card card border-0 p-1 position-relative overflow-x-hidden">
 
-        <div class="options d-flex flex-column gap-2 position-absolute">
+    <div class="options d-flex flex-column gap-2 position-absolute">
 
-            <button class="btn bg-body shadow-lg rounded-pill">
-                <i class="bi bi-handbag"></i>
-            </button>
+        <button class="btn bg-body shadow-lg rounded-pill">
+            <i class="bi bi-handbag"></i>
+        </button>
 
-            <button class="btn bg-body shadow-lg rounded-pill">
-                <i class="bi bi-stars"></i>
-            </button>
+        <button class="btn bg-body shadow-lg rounded-pill">
+            <i class="bi bi-stars"></i>
+        </button>
 
-        </div>
-
-        <img style="height: 200px;" src={`/images/products/${product.data.images[0]}`} alt={`${product.data.name}`} class="card-img-top rounded-0 object-fit-contain" />
-        <a href={`/shop/product#${product.data.id}-${product.data.name}`} class="card-body text-center lh-sm">
-            <p class="card-subtitle smaller fw-light">{product.data.category}</p>
-            <p class="card-title">{product.data.name}</p>
-            <p class="card-text">${product.data.price}</p>
-        </a>
     </div>
+
+    <img style="height: 200px;" src={`/images/products/${product.data.images[0]}`} alt={`${product.data.name}`} class="card-img-top rounded-0 object-fit-contain" />
+    <a href={`/shop/product#${product.data.id}-${product.data.name}`} class="card-body text-center lh-sm">
+        <p class="card-subtitle smaller fw-light">{product.data.category}</p>
+        <p class="card-title">{product.data.name}</p>
+        <p class="card-text">${product.data.price}</p>
+    </a>
+</div>

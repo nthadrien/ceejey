@@ -32,8 +32,8 @@ export type SearchQueryType = {
 }
 
 export const initialQuery = {
-    page : 1,
-    size: 2,
+    page : 0,
+    size: 12,
     category: "none",
     minP : 1,
     maxP : 100,

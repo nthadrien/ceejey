@@ -1,0 +1,148 @@
+// Custom.scss
+$fonts-path: "../fonts/";
+
+@font-face {
+    src: url("#{$fonts-path}/SwankyandMooMoo-Regular.ttf");
+    font-family: "swanky";
+    font-weight: normal;
+}
+
+@font-face {
+    src: url($fonts-path + "/Pacifico-Regular.ttf");
+    font-family: "pacifico";
+    font-weight: lighter;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;padding: 0;
+}
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "./node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+
+$primary : rgb(166, 101, 155);
+$secondary: rgb(194, 178, 128) ;
+$info : #65b8a6;;
+
+
+$neutral : #f5f5f5;
+
+$offcanvas-horizontal-width: max(40vw,450px);
+$focus-ring-opacity:    .12;
+$focus-ring-width:      .15rem;
+
+
+// $container-max-widths: (
+//   sm: 540px,
+//   md: 720px,
+//   lg: 960px,
+//   xl: 1140px,
+//   xxl: 1320px
+// );
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "./node_modules/bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "./node_modules/bootstrap/scss/maps";
+@import "./node_modules/bootstrap/scss/mixins";
+@import "./node_modules/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "./node_modules/bootstrap/scss/utilities";
+@import "./node_modules/bootstrap/scss/reboot";
+// @import "./node_modules/bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+@import "./node_modules/bootstrap/scss/containers";
+@import "./node_modules/bootstrap/scss/grid";
+@import "./node_modules/bootstrap/scss/helpers";
+// @import "./node_modules/bootstrap/scss/card";
+@import "./node_modules/bootstrap/scss/nav";
+@import "./node_modules/bootstrap/scss/navbar";
+@import "./node_modules/bootstrap/scss/dropdown";
+@import "./node_modules/bootstrap/scss/breadcrumb";
+@import "./node_modules/bootstrap/scss/offcanvas";
+@import "./node_modules/bootstrap/scss/toasts";
+// @import "./node_modules/bootstrap/scss/transitions";
+@import "./node_modules/bootstrap/scss/buttons";
+@import "./node_modules/bootstrap/scss/button-group";
+@import "./node_modules/bootstrap/scss/forms";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "./node_modules/bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13[x];
+}
+
+a, .nav-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.text-pacifico {
+    font-family: Pacifico;
+}
+
+.text-swanky {
+    font-family: Swanky, 'Courier New', Courier, monospace;
+}
+
+.btn-primary, .btn-secondary, .btn-info , .text-bg-primary, .text-bg-secondary , .text-bg-info {
+    color: $neutral !important;
+}
+
+.smaller {
+    font-size: smaller;
+}
+
+.small-x {
+    font-size: x-small;
+}
+
+.btn-check:checked ~ .btn {
+    background-color: var(--pry-clr);
+    color: var(--neutral-clr);
+}
+
+.product-card .options {
+    flex-direction: column;
+    opacity: 0;
+    top: 15%;
+    transform: translateX(-20%);
+}
+
+.product-card:hover .options {
+    opacity: 1;
+    transform: translateX(10%);
+    transition: all 0.5s linear;
+}
+
+.product-card:hover {
+    box-shadow: rgba(4, 3, 3, 0.16) 0px 1px 4px;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 14px !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    body {
+        font-size: 16px !important;
+    }
+}
+
+.bg-gray-50 {
+    background-color: rgba(119, 136, 153, 0.236);
+}

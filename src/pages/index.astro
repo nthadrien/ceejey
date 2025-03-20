@@ -4,6 +4,10 @@ import Layout from '../layouts/ELayout.astro';
 import HomeHeader from '@components/headers/HomeHeader.astro';
 import { getEntries } from 'astro:content';
 import { getCollection } from 'astro:content';
+import Headers from '@components/headers/Headers.astro';
+import NewsLetter from '@components/forms/NewsLetter.astro';
+import BlogCard from '@components/cards/BlogCard.astro';
+import ProductCard from '@components/cards/ProductCard.astro';
 
 const headerInfo = {
 	description : "Home page for show casing many things.",
@@ -13,6 +17,7 @@ const headerInfo = {
 
 
 const posts = await getCollection('blog');
+const products = await getCollection('products');
 // const requiredBlogs = posts.sort( (a,b) => {
 // 	return a.data.publishDate < b.data.publishDate
 // }).slice(0,2);
@@ -23,32 +28,67 @@ const posts = await getCollection('blog');
 
 <Layout {...headerInfo}>
 
-	<HomeHeader />
+	<header style="height: max(480px,20vh);" class="container-fluid bg-gradient bg-body-tertiary py-4 px-2">
+		<div class="container-sm mx-auto row pt-5">
+			<aside class="col-lg-7">
+				<h2>Navigate </h2>
+				<p class="text-start">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, quaerat? 
+					Distinctio sed provident explicabo ipsum dolores facere quam quae, 
+					quod dolorum est ducimus atque hic assumenda corrupti quis. Deserunt, explicabo.
+				</p>
 
-	<section>
-		<h1>Categories / Brand showcase</h1>
+				<p>
+					<a href="fo" class="btn btn-primary btn-lg">
+						Promotions
+					</a>
+
+					<a href="#fo" class="btn btn-lg">
+						Shop
+					</a>
+
+					
+				</p>
+
+			</aside>
+		</div>
+	</header>
+
+	<section class="container mx-auto d-flex flex-column gap-3 my-4">
+
+		<h4 class="text-center"> Brand showcase</h4>
+
+		<div class="row">
+			{products.slice(0,3).map( (item)=> <div class="col col-lg-4">
+				<ProductCard product={item} />
+			</div>
+		)}
+
+		</div>
+
+
+		<aside>
+
+		</aside>
+
 	</section>
 
-	<section>
-		<h2>Featured Categories</h2>
+	<section class="container-sm mx-auto">
+
+		<div class="nav justify-content-between pb-1 mb-3">
+			<span class="h4 border-bottom fw-bold">Latest Posts</span> 
+			<a href="/blog">more post <i class="bi bi-arrow-right"></i></a>
+		</div>
+
+		<div class="d-flex justify-content-start gap-3 overflow-x-auto">
+
+			{posts.slice(0,4).map( post => <div style="max-width: 320px;" class="flex-shrink-0">
+				<BlogCard post={post} />
+			</div> )}
+
+		</div>
 
 	</section>
 
-	<section>
-		<h2>Trending , TOp Rated , New Categories</h2>
-
-	</section>
-
-	<section>
-		<h2 class="text-center">Our latest News</h2>
-
-		<p class="text-center">If you need more tips on how to ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas praesentium placeat libero, tenetur maiores nemo a aperiam reprehenderit! Sint fugit recusandae ex velit voluptates quaerat quos et nostrum veritatis veniam.</p>
-
-		<h1>Blog List</h1>
-	</section>
-
-
-	<section>
-		<p>Carousel of brands I guess</p>
-	</section>
+	<NewsLetter />
 </Layout>
