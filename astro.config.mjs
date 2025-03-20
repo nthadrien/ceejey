@@ -18,6 +18,5 @@ export default defineConfig({
   integrations: [
     solidJs({ devtools: true }), 
     // sitemap()
-  ],
-  output: "static"
+  ]
 });
