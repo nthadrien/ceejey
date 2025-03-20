@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "host": "vite --host",
-    "sass":"sass --watch ./global.scss ./src/styles/custom.css"
+    "sass": "sass --watch ./global.scss ./src/styles/custom.css",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.0",
@@ -24,5 +25,8 @@
     "remark-toc": "^9.0.0",
     "sass": "^1.86.0",
     "solid-js": "^1.9.5"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
