@@ -4,12 +4,12 @@ import { remarkReadingTime } from './src/remark-reading-time.mjs';
 // solid js 
 import solidJs from '@astrojs/solid-js';
 import sitemap from '@astrojs/sitemap';
-import vercelStatic from '@astrojs/vercel/static';
+import vecel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  // site: 'https://nthadrien.github.io',
-  base: '/',
+  site: 'https://nthadrien.github.io',
+  // base: '/',
   // markdown settings
   markdown: {
       remarkPlugins: [
@@ -21,8 +21,5 @@ export default defineConfig({
     solidJs({ devtools: true }), sitemap()
   ],
   // deploying on vercel config:
-  output: 'static',
-  adapter: vercelStatic({
-    
-  }),
+  adapter: vecel(),
 });

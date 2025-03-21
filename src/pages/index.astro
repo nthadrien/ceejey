@@ -1,10 +1,6 @@
 ---
-import type { ACTION_ERROR_CODES } from 'astro:actions';
 import Layout from '../layouts/ELayout.astro';
-import HomeHeader from '@components/headers/HomeHeader.astro';
-import { getEntries } from 'astro:content';
 import { getCollection } from 'astro:content';
-import Headers from '@components/headers/Headers.astro';
 import NewsLetter from '@components/forms/NewsLetter.astro';
 import BlogCard from '@components/cards/BlogCard.astro';
 import ProductCard from '@components/cards/ProductCard.astro';
@@ -17,14 +13,8 @@ const headerInfo = {
 };
 
 
-const posts = await getCollection('blog');
-const products = await getCollection('products');
-// const requiredBlogs = posts.sort( (a,b) => {
-// 	return a.data.publishDate < b.data.publishDate
-// }).slice(0,2);
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// const posts = [] // await getCollection('blog');
+// const products = [] // await getCollection('products');
 ---
 
 <Layout {...headerInfo}>
@@ -111,9 +101,9 @@ const products = await getCollection('products');
 
 
 		<div class="row py-3 px-2">
-			{products.slice(0,4).map( (item)=> <div class="col col-lg-3">
+			<!-- {products.slice(0,4).map( (item)=> <div class="col col-lg-3">
 				<ProductCard product={item} />
-			</div>)}
+			</div>)} -->
 		</div>
 
 	</section>
@@ -152,9 +142,9 @@ const products = await getCollection('products');
 		</div>
 
 		<div class="d-flex justify-content-between gap-2 overflow-x-auto hide-scroll-bar ">
-			{posts.slice(0,3).map( post => <div style="max-width:21rem;" class="flex-shrink-0">
+			<!-- {posts[0] && posts.slice(0,3).map( post => <div style="max-width:21rem;" class="flex-shrink-0">
 				<BlogCard displayStyle={3} post={post} />
-			</div> )}
+			</div> )} -->
 		</div>
 
 	</section>
