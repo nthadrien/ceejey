@@ -21,5 +21,6 @@ export default defineConfig({
     solidJs({ devtools: true }), sitemap()
   ],
   // deploying on vercel config:
+  output:'static',
   adapter: vercel()
 });

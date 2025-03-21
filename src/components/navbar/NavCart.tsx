@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/solid"
-import { createEffect, createSignal, For, onMount, Show } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { shoppingCart } from "src/stores/users";
 
 
