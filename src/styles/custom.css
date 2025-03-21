@@ -1,10 +1,10 @@
 @font-face {
-  src: url("../fonts//SwankyandMooMoo-Regular.ttf");
+  src: url("/fonts//SwankyandMooMoo-Regular.ttf");
   font-family: "swanky";
   font-weight: normal;
 }
 @font-face {
-  src: url("../fonts//Pacifico-Regular.ttf");
+  src: url("/fonts//Pacifico-Regular.ttf");
   font-family: "pacifico";
   font-weight: lighter;
 }
@@ -9650,11 +9650,11 @@ a, .nav-link {
 }
 
 .smaller {
-  font-size: smaller;
+  font-size: smaller !important;
 }
 
 .small-x {
-  font-size: x-small;
+  font-size: x-small !important;
 }
 
 .btn-check:checked ~ .btn {
@@ -9702,6 +9702,18 @@ a, .nav-link {
 .hide-scroll-bar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.progress {
+  height: 1.2rem;
+  border: 1px solid rgba(221, 221, 221, 0.5098039216);
+  padding: 0.15em;
+}
+
+.progress > div {
+  height: 100%;
+  background-color: #ffc107;
+  border-radius: inherit;
 }
 
 /*# sourceMappingURL=custom.css.map */

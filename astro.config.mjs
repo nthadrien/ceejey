@@ -8,9 +8,8 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nthadrien.github.io',
-  base: 'ceejey',
-
+  // site: 'https://nthadrien.github.io',
+  base: '/',
   // markdown settings
   markdown: {
       remarkPlugins: [
@@ -19,10 +18,8 @@ export default defineConfig({
   },
 
   integrations: [
-    solidJs({ devtools: true }), 
-    sitemap()
+    solidJs({ devtools: true }), sitemap()
   ],
   // deploying on vercel config:
-  output: 'server',
   adapter: vercel()
 });

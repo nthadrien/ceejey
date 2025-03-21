@@ -1,5 +1,5 @@
 // Custom.scss
-$fonts-path: "../fonts/";
+$fonts-path: "/fonts/";
 
 @font-face {
     src: url("#{$fonts-path}/SwankyandMooMoo-Regular.ttf");
@@ -102,11 +102,11 @@ a, .nav-link {
 }
 
 .smaller {
-    font-size: smaller;
+    font-size: smaller !important;
 }
 
 .small-x {
-    font-size: x-small;
+    font-size: x-small !important;
 }
 
 .btn-check:checked ~ .btn {
@@ -156,4 +156,16 @@ display: none;
 .hide-scroll-bar {
 -ms-overflow-style: none;  /* IE and Edge */
 scrollbar-width: none;  /* Firefox */
+}
+
+.progress {
+    height: 1.2rem;
+    border: 1px solid #dddddd82;
+    padding: 0.15em;
+}
+
+.progress > div {
+    height: 100%;
+    background-color: $warning;
+    border-radius: inherit;
 }

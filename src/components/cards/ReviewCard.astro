@@ -19,13 +19,20 @@ const rating = ():string[] => {
 
 ---
 
-<div class="hl-1 p-2 small shadow-sm">
-    
-    <div class="d-flex gap-1 justify-content-between small">
-        <strong>{review.data.name}</strong>
-        <p>{new Date(review.data.date).toDateString()}</p>
-    </div>
-    <p>{review.data.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nam enim laborum, necessitatibus quo nemo soluta inventore sint adipisci ipsa, at autem, fugit odio? Magnam accusantium excepturi illo ducimus eaque?</p>
-    <p class="text-secondary small">{rating().map( t => <i class={`bi ${t}`}></i>)}</p>
+<div class="rounded shadow p-3 border" style="transition: all 0.3s ease;">
+        
+    <div class="small mb-2">
 
+        <span class="fs-6 fw-semibold">{review.data.name}</span>
+        <span class="vr mx-2 mx-lg-4" />
+        <span class="text-warning"> {rating().map( t => <i class={`bi ${t}`}></i>)}</span>
+        <span class="vr mx-2 mx-lg-4" />
+        
+        <i class="bi bi-bag-check-fill text-success"></i> Verified Purchase
+    </div>
+
+    <p class="mb-2">"{review.data.description} Lorem  necessitatibus quo nemo soluta inventore sint adipisci ipsa, at autem, fugit odio? Magnam accusantium excepturi illo ducimus eaque?"</p>
+    
+    <small class="text-muted">Reviewed on {new Date(review.data.date).toDateString()}</small>
+        
 </div>

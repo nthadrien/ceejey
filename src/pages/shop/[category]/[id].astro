@@ -167,7 +167,7 @@ const headerInfo = {
             <aside class="tab-pane fade show active" id="related-products-tab-pane" role="tabpanel" aria-labelledby="related-products-tab" tabindex="0"> 
                 {relatedProducts[0] ?  <div class="row row-cols-2 row-cols-md-4">
                     {relatedProducts.map( product => <ProductCard  product={product} />) }
-                </div> :  <h3 class="text-swanky">No related Product for now.</h3>
+                </div> :  <h5 class="text-swanky">No related Product for now.</h5>
                 }
             </aside>
 
@@ -176,16 +176,16 @@ const headerInfo = {
 
                 <div class="row g-3">
 
-                    <section class="col-lg-4 d-flex flex-column gap-3">
+                    <section class="col-lg-4 row align-items-center gap-3">
                         <h6 class="py-2">Reviews Summary</h6>
-                        { reviews[0] && ['five','four','three'].map( (rate:string, i:number) => <div class="d-flex gap-1">
+                        { reviews[0] ? ['five','four','three'].map( (rate:string, i:number) => <div class="d-flex gap-1">
                                 <b class="col-2">{5 - i}</b>
-                                <div class="progress col-8" role="progressbar" aria-label="rating" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-primary" style={`width: ${(reviewStats[rate]/reviews.length ) * 100}%`}>
-                                    </div>
+
+                                <div class="progress rounded-4 col-8" role="progressbar" aria-label="rating" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <div style={`width: ${(reviewStats[rate]/reviews.length ) * 100}%;`}></div>
                                 </div>
                                 <span class="col-2">{(reviewStats[rate]/reviews.length ) * 100} %</span>
-                        </div>) || (<h3 class="text-swanky">No reviews for this Product.</h3>) }
+                        </div>) : <h6>No reviews posted</h6> }
 
                         { reviews[0] && <b> Others : {(reviewStats['others']/reviews.length ) * 100}% </b> }
                         <CustomerReview />

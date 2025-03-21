@@ -8,7 +8,6 @@ import NewsLetter from "@components/forms/NewsLetter.astro";
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
 import TableOfContent from "@components/headers/TableOfContent.astro";
 
-
 export const getStaticPaths = (async () => {
     const post = await getCollection("blog");
     return post.map( post => {
@@ -36,8 +35,6 @@ const headerInfo = {
 <Layout {...headerInfo}>
 
     <BreadCrumb page="" />
-
-    
 
     <main class="container mx-auto my-3 position-relative">
 

@@ -15,25 +15,23 @@ function NavCart() {
     <div onMouseLeave={mouseLeave} class="btn-group">
 
       <button onClick={changeOpen} type="button" class="btn position-relative" aria-expanded="false">
-        <i class="bi bi-handbag fs-6"></i> 
-        <small class="badge text-bg-primary rounded-pill position-absolute me-5 mt-3">{ $cart().length > 0 ? $cart().length: ""  }</small>
+        <i class="bi bi-handbag fs-5"></i> 
+        <small class="badge text-bg-primary px-2 rounded-pill position-absolute top-100 start-75 translate-middle x-small">{ $cart().length > 0 ? $cart().length: ""  }</small>
       </button>
 
       <Show when={open()}>
 
-        <ul style="right:0;top:100%; max-width:240px;" class="dropdown-menu show position-absolute p-1">
+        <ul style={"width: 260px;"} class="dropdown-menu show end-0 top-100">
 
           <For each={$cart()} fallback={<h5>Nothing add to cart.</h5>}>
             {item => <li class="dropdown-item d-flex gap-2">
-
-              <img style={"max-height:48px;max-width:48px"} class="object-fit-contain" src={`/images/products/${item.image}`} alt="img" />
-              <p class="text-swanky" style={"font-size:smaller;"}>
-                {item.category.split("-")[2]} <br/>
-                Quantity : {item.qty} , color: {item.color}
-              </p>
+              <img style={"max-height:48px;max-width:48px"} class="object-fit-contain col-3" src={`/images/products/${item.image}`} alt="img" />
+              <small class="col-9" style={"font-size:smaller;"}>
+                <b>{item.category.split("-")[2]}</b> <br/>
+                {item.qty}  {item.color}
+              </small>
             </li>}
           </For>
-          <li><hr class="dropdown-divider" /></li>
           <li><a href="/checkout" class="dropdown-item"> <i class="bi bi-clipboard2-check"></i> checkout </a></li>
         </ul>
       </Show>

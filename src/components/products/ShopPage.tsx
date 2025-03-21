@@ -12,18 +12,17 @@ import LoadingSreen from "@components/LoadingScreen";
 
 
 
-
 function ShopPage(props: ShopProps): JSX.Element {
 
   const [myQuery, setMyQuery] = createSignal<SearchQueryType>(initialQuery);
   const [loading, setLoading] = createSignal<boolean>(true);
-  const [style, setStyle] = createSignal<number>(2);
+  const [style, setStyle] = createSignal<number>(1);
 
   onMount(() => {
     const data = Object.fromEntries(new URLSearchParams(window?.location.search));
     const newOne = {
       page: data.page ? parseInt(data.page) : 0,
-      size: data.size ? parseInt(data.size) : 1,
+      size: data.size ? parseInt(data.size) : 6,
       category: data.category ? data.category : "none",
       minP: data.minP ? parseInt(data.minP) : 1,
       maxP: data.maxP ? parseInt(data.maxP) : 100,

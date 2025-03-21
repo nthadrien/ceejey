@@ -1,6 +1,5 @@
-import { useStore } from "@nanostores/solid";
-import { createMemo, type JSX } from "solid-js";
-import { page } from "src/stores/users";
+
+import { type JSX } from "solid-js";
 import type { SearchQueryType } from "./search.type";
 
 interface Props {
@@ -14,9 +13,7 @@ function SearchNav(props:Props): JSX.Element {
 
     const seen = ():number => {
         const total:number = (props.current.page + 1) * props.current.size;
-         
-        const diff:number = total - props.size
-        console.log( total , diff )
+        const diff:number = total - props.size;
         if ( total <= props.size ) return total;
         return  total - diff;
     }
@@ -25,7 +22,6 @@ function SearchNav(props:Props): JSX.Element {
         const goTO = new URLSearchParams( {...props.current, sortby : e.currentTarget.value  } as {}).toString();
         window.location.search = "?"+goTO;
     }
-
 
     return (<nav class="nav justify-content-between fw-semibold align-items-center gap-2 px-2">
 
