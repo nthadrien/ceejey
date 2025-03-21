@@ -4,7 +4,7 @@ import { remarkReadingTime } from './src/remark-reading-time.mjs';
 // solid js 
 import solidJs from '@astrojs/solid-js';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
+import vercelStatic from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +21,8 @@ export default defineConfig({
     solidJs({ devtools: true }), sitemap()
   ],
   // deploying on vercel config:
-  output:'static',
-  adapter: vercel()
+  output: 'static',
+  adapter: vercelStatic({
+    
+  }),
 });
