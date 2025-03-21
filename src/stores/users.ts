@@ -1,14 +1,6 @@
 
-import { persistentAtom, persistentMap } from "@nanostores/persistent";
-import { atom, map, onMount } from "nanostores"
-
-export type SearchDetails = {
-    page: string;
-    size: string;
-    sortBy: "popularity"|"price";
-    brands: string;
-    category: string;
-}
+import { persistentAtom } from "@nanostores/persistent";
+import { map } from "nanostores"
 
 export type CartItem = {
     id: string;
@@ -20,16 +12,6 @@ export type CartItem = {
     max: string;
     discount?: string;
 }
-
-export const page = persistentMap<SearchDetails>("page:",{
-    page: "0",    
-    size: "12",
-    sortBy: "popularity",
-    brands:"",
-    category:""
-});
-
-export const changeData = (a:"category"|"size"|"page"|"sortBy"|"brands", b:string ) => page.setKey(a,b);
 
 
 export const notifications = map<{ message: string, type:"success"|"warning"}[]> ([]);
