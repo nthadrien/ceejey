@@ -15,7 +15,7 @@ interface Props {
 export default function ProductCard(props:Props): JSXElement {
 
 
-    return (<aside class={`product-card position-relative ${ props.displayStyle === 2 ? "d-flex gap-2 justify-content-between align-items-center p-2" : "card p-1" }`}>
+    return (<aside class={`product-card position-relative d-flex align-items-center gap-2 p-2 border ${ props.displayStyle === 2 ? "justify-content-between" : "flex-column" }`}>
 
         <Show when={ props.discount && props.discount > 0}>
             <small style="width:fit-content;z-index:1" class="position-absolute text-pacifico start-0 top-0 p-2 text-bg-primary rounded-2">
@@ -23,36 +23,37 @@ export default function ProductCard(props:Props): JSXElement {
             </small>
         </Show>
 
-        <div class={props.displayStyle === 2 ? "col-4 col-lg-5" : "col"}>
-            <img style="height: 220px;" src={`/images/products/${props.images[0]}`} alt={`${props.name}`} class="rounded-0 object-fit-contain" />
+        <div style='height:225px;' class={`bg-body-tertiary ${props.displayStyle === 2 ? "col-4 col-lg-5" : "col"}`}>
+            <img style="height: 220px;" src={`/images/products/${props.images[0]}`} alt={`${props.name}`} class="rounded-0 object-fit-fill" />
         </div>
 
-        <div  class="card-body col lh-sm">
+        <div  class="card-body col">
             
-            <a href={`/shop/${props.category}/${props.id}`}>
+            <a class="lh-lg" href={`/shop/${props.category}/${props.id}`}>
                 <h6 class="card-title">{props.name}</h6>
                 <p class="card-text text-muted nav justify-content-between">
                     <span>{props.category}</span>
                     <span class="text-success">${props.price}</span>
                 </p>
+
                 <Show when={props.displayStyle == 2}>
                     
                     <p class="mt-3">
-                        <b>Description</b> <br/>
                         {props.description ?? "ooopps someting went wrong"}
                     </p>
                 </Show>
             </a>
 
-            <div class={ `nav  gap-2 ${props.displayStyle == 1 ? "options position-absolute" : "" }`}>
-                <button class="btn bg-body shadow-sm">
+            <div class={ `bg-body nav gap-2 ${props.displayStyle == 1 ? "options position-absolute shadow-sm" : "" }`}>
+                <button class="btn">
                     <i class="bi bi-handbag"></i>
                 </button>
 
-                <button class="btn bg-body shadow-sm">
+                <button class="btn">
                     <i class="bi bi-stars"></i>
                 </button>
             </div>
+            
         </div>
 
         

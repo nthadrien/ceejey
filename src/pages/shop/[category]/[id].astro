@@ -148,7 +148,7 @@ const headerInfo = {
     <!-- more: related & reviews -->
     <section class="container mx-auto my-4">
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-underline border-bottom" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="related-products-tab" data-bs-toggle="tab" data-bs-target="#related-products-tab-pane" type="button" role="tab" aria-controls="related-products-tab-pane" aria-selected="true">
                     Related Products <small>({relatedProducts.length})</small>
@@ -164,7 +164,7 @@ const headerInfo = {
         <div class="tab-content mt-3 px-2" id="myTabContent">
 
             <!-- tab related products -->
-            <aside class="tab-pane fade show active" id="related-products-tab-pane" role="tabpanel" aria-labelledby="related-products-tab" tabindex="0"> 
+            <aside class="tab-pane custom-slide show active" id="related-products-tab-pane" role="tabpanel" aria-labelledby="related-products-tab" tabindex="0"> 
                 {relatedProducts[0] ?  <div class="row row-cols-2 row-cols-md-4">
                     {relatedProducts.map( product => <ProductCard  product={product} />) }
                 </div> :  <h5 class="text-swanky">No related Product for now.</h5>
@@ -172,7 +172,7 @@ const headerInfo = {
             </aside>
 
             <!-- tab ratings -->
-            <aside class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+            <aside class="tab-pane custom-slide" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
 
                 <div class="row g-3">
 

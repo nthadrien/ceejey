@@ -6,6 +6,8 @@ import solidJs from '@astrojs/solid-js';
 import sitemap from '@astrojs/sitemap';
 import vecel from '@astrojs/vercel';
 
+import purgecss from 'astro-purgecss';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nthadrien.github.io',
@@ -17,9 +19,7 @@ export default defineConfig({
       ]
   },
 
-  integrations: [
-    solidJs({ devtools: true }), sitemap()
-  ],
+  integrations: [solidJs({ devtools: true }), sitemap(), purgecss()],
   // deploying on vercel config:
   adapter: vecel(),
 });

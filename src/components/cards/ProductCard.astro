@@ -9,21 +9,20 @@ const { product } = Astro.props;
 ---
 
 
-<div class="product-card card border-0 p-1 position-relative overflow-x-hidden">
+<div class="product-card w-100 p-1 position-relative overflow-x-hidden border">
 
-    <div class="options d-flex flex-column gap-2 position-absolute">
-
-        <button class="btn bg-body shadow-lg rounded-pill">
+    <div class="options d-flex gap-2 position-absolute shadow-sm rounded-3">
+        <button class="btn">
             <i class="bi bi-handbag"></i>
         </button>
 
-        <button class="btn bg-body shadow-lg rounded-pill">
+        <button class="btn">
             <i class="bi bi-stars"></i>
         </button>
-
     </div>
 
-    <img style="height: 200px;" src={`/images/products/${product.data.images[0]}`} alt={`${product.data.name}`} class="rounded-0 object-fit-contain" />
+    <img style="height: 200px;" src={`/images/products/${product.data.images[0]}`} alt={`${product.data.name}`} class="border border-danger bg-dark object-fit-contain" />
+
     <a href={`/shop/product#${product.data.id}-${product.data.name}`} class="card-body text-center lh-sm">
         <p class="card-subtitle smaller fw-light">{product.data.category}</p>
         <p class="card-title">{product.data.name}</p>

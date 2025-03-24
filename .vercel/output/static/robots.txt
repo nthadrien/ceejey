@@ -2,5 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap-index.xml 
- invalid
+Sitemap: https://nthadrien.github.io/sitemap-index.xml

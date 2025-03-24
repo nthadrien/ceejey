@@ -8,14 +8,15 @@ $fonts-path: "/fonts/";
 }
 
 @font-face {
-    src: url($fonts-path + "/Pacifico-Regular.ttf");
-    font-family: "pacifico";
+    src: url($fonts-path + "/Zeyada-Regular.ttf");
+    font-family: "zeyada";
     font-weight: lighter;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;padding: 0;
+    transition: all 0.185s ease-in;
 }
 // Option B: Include parts of Bootstrap
 
@@ -24,9 +25,9 @@ $fonts-path: "/fonts/";
 
 // 2. Include any default variable overrides here
 
-$primary : rgb(166, 101, 155);
-$secondary: rgb(194, 178, 128) ;
-$info : #65b8a6;;
+$primary : #a6659b;
+$secondary: #c2b280 ;
+$info : #E6BDBC;;
 
 
 $neutral : #f5f5f5;
@@ -34,15 +35,6 @@ $neutral : #f5f5f5;
 $offcanvas-horizontal-width: max(40vw,450px);
 $focus-ring-opacity:    .12;
 $focus-ring-width:      .15rem;
-
-
-// $container-max-widths: (
-//   sm: 540px,
-//   md: 720px,
-//   lg: 960px,
-//   xl: 1140px,
-//   xxl: 1320px
-// );
 
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "./node_modules/bootstrap/scss/variables";
@@ -59,7 +51,7 @@ $focus-ring-width:      .15rem;
 @import "./node_modules/bootstrap/scss/utilities";
 @import "./node_modules/bootstrap/scss/reboot";
 // @import "./node_modules/bootstrap/scss/type";
-@import "./node_modules/bootstrap/scss/images";
+// @import "./node_modules/bootstrap/scss/images";
 @import "./node_modules/bootstrap/scss/containers";
 @import "./node_modules/bootstrap/scss/grid";
 @import "./node_modules/bootstrap/scss/helpers";
@@ -89,8 +81,8 @@ a, .nav-link {
     text-decoration: none;
 }
 
-.text-pacifico {
-    font-family: Pacifico;
+.text-zeyada {
+    font-family: Zeyada;
 }
 
 .text-swanky {
@@ -114,23 +106,6 @@ a, .nav-link {
     color: var(--neutral-clr);
 }
 
-.product-card .options {
-    flex-direction: column;
-    opacity: 0;
-    top: 15%;
-    transform: translateX(-20%);
-}
-
-.product-card:hover .options {
-    opacity: 1;
-    transform: translateX(10%);
-    transition: all 0.5s linear;
-}
-
-.product-card:hover {
-    box-shadow: rgba(4, 3, 3, 0.16) 0px 1px 4px;
-}
-
 @media (min-width: 768px) {
     body {
         font-size: 14px !important;
@@ -149,13 +124,13 @@ a, .nav-link {
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scroll-bar::-webkit-scrollbar {
-display: none;
+    display: none;
 }
   
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scroll-bar {
--ms-overflow-style: none;  /* IE and Edge */
-scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .progress {
@@ -168,4 +143,53 @@ scrollbar-width: none;  /* Firefox */
     height: 100%;
     background-color: $warning;
     border-radius: inherit;
+}
+
+.bg-body-tertiary {
+    background-color: var($neutral);
+}
+
+.container-sm {
+    max-width: 1080px;
+}
+
+.custom-slide.active {
+    animation: opaq 0.52s ease 0s 1 forwards;
+    transform: translateX(-50%);
+}
+
+.custom-fade.active {
+    animation: fadi 0.52s ease 0s 1 forwards;
+}
+
+@keyframes opaq {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1 ;
+        transform: translateX(0);
+    }
+    
+}
+
+@keyframes fadi {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1 ;
+    }
+}
+
+.hover-show {
+    opacity: 0;
+}
+
+*:hover > .hover-show {
+    opacity: 0.8;
+}
+
+.img-fit {
+    object-fit: cover;
 }

@@ -13,28 +13,30 @@ const headerInfo = {
 };
 
 
-// const posts = [] // await getCollection('blog');
-// const products = [] // await getCollection('products');
+const posts = await getCollection('blog');
+const products = await getCollection('products');
+const productCategories = await products.slice(0,4);
+const sortedPosts = posts.sort( (a,b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()).splice(0,3);
 ---
 
 <Layout {...headerInfo}>
 
 	<header style="height: max(480px,20vh);" class="container-fluid bg-gradient bg-body-tertiary py-4 px-2">
 		<div class="container-sm mx-auto row pt-5">
-			<aside class="col-lg-7">
-				<h2>Navigate </h2>
-				<p class="text-start">
+			<aside class="col-lg-6  nav flex-column justify-content-center">
+				<h1 class="fw-bold">Beauty Vibes  <br/> With Hair Care. </h1>
+				<p class="text-start text-zeyada">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, quaerat? 
 					Distinctio sed provident explicabo ipsum dolores facere quam quae, 
 					quod dolorum est ducimus atque hic assumenda corrupti quis. Deserunt, explicabo.
 				</p>
 
 				<p>
-					<a href="fo" class="btn btn-primary btn-lg">
+					<a href="fo" class="btn btn-primary btn-lg rounded-0 me-2">
 						Promotions
 					</a>
 
-					<a href="#fo" class="btn btn-lg">
+					<a href="#fo" class="btn btn-lg rounded-0 btn-outline-primary">
 						Shop
 					</a>
 
@@ -42,99 +44,80 @@ const headerInfo = {
 				</p>
 
 			</aside>
+
+			<img src="/images/website/currly.png" class="d-none d-lg-block col-lg-4 object-fit-fill" alt="imj">
 		</div>
 	</header>
 
-	<section class="container mx-auto d-flex flex-column gap-3 my-4 py-3 px-2">
 
-		<h4 class="text-center"> Brand showcase</h4>
-		<p class="text-center">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ea excepturi sint, 
-			quidem repellat eligendi dolores quam cum incidunt.
-		</p>
+	<section class="container-sm mx-auto my-4 py-5">
 
-		<div class="row row-cols-1 row-cols-lg-3 g-1 g-lg-2">
+		<nav class="nav justify-content-between ">
+			<h4 class="fw-semibold">Popular Categories</h4>
 
-			<aside class="col d-flex flex-column gap-2">
-
-				<img src="./images/website/index-1.jpg" alt="i">
-
-				<img src="./images/website/index-2.jpg" alt="i">
-
-			</aside>
-
-
-
-			<aside class="col">
-				<img src="./images/website/about-1.jpg" class="h-100 w-100 object-fit-cover" alt="i">
-			</aside>
-
-
-			<aside class="col d-flex flex-column gap-2">
-
-				<img src="./images/website/index-2.jpg" alt="i">
-
-				<img src="/images/website/index-1.jpg" alt="i">
-
-			</aside>
-
-		</div>
-
-
-
-	</section>
-
-
-	<section class="container-sm mx-auto mb-3 py-5">
+			<ul class="nav  nav-underline mb-3" id="pills-tab" role="tablist">
+				{["shoes","bag","lips"].map( (cat,i) => <li role="presentation">
+					<button class={`nav-link text-capitalize ${i == 0 && "active" }`} id={`pills-${cat}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${cat}`} type="button" role="tab" aria-controls={`pills-${cat}`} aria-selected="false">{cat}</button>
+				</li>)}
+			</ul>
+		</nav>
 
 		
 
-		<nav class="nav justify-content-between align-items-center border-bottom">
+		<div class="tab-content" id="pills-tabContent">
+			{["shoes","bag","lips"].map(
+				(cat,i) => <div class={`tab-pane custom-fade ${ i < 1 && "active show"}`} id={`pills-${cat}`} role="tabpanel" aria-labelledby={`pills-${cat}-tab`} tabindex="0"> 
 
-			<h6>Popular Categories</h6>
+					<aside class="d-flex gap-2 overflow-x-auto hide-scroll-bar ">
+						{productCategories.map( (item)=> <div style="width: 18rem;" class="flex-shrink-0">
+							<ProductCard product={item} />
+						</div>)} 
+					</aside>
 
-			<div class="nav nav-underline">
-				{[1,2].map( cat =>  <button class="nav-link" aria-current="page"> cateory {cat}</button> )}
+					
+				</div>
+			)}
+		</div>
+		
+		<a href="/shop" class="d-none d-lg-inline opacity-75 fw-light">
+			more than 234+ products available <i class="bi bi-arrow-right"></i>
+		</a>
+
+	</section>
+
+	<section class="container-sm mx-auto row justify-content-start my-4 py-3 px-2">
+	  
+		<div class="row align-items-md-stretch g-3">
+
+			<div class="col-md-4">
+			  <div class="h-100 p-5 text-bg-dark rounded-3">
+				<h2>Change the background</h2>
+				<p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+				<button class="btn btn-outline-light" type="button">Example button</button>
+			  </div>
 			</div>
-		</nav>
+
+			<div class="col-md-4">
+			  <div class="h-100 p-5 text-bg-primary border rounded-3">
+				<h2>Add borders</h2>
+				<p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+				<button class="btn btn-outline-secondary" type="button">Example button</button>
+			  </div>
+			</div>
 
 
-
-		<div class="row py-3 px-2">
-			<!-- {products.slice(0,4).map( (item)=> <div class="col col-lg-3">
-				<ProductCard product={item} />
-			</div>)} -->
+			<div class="col-md-4">
+				<div class="h-100 p-5 bg-body-tertiary border rounded-3">
+				  <h2>Add borders</h2>
+				  <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+				  <button class="btn btn-outline-secondary" type="button">Example button</button>
+				</div>
+			</div>
 		</div>
 
 	</section>
 
-
-	<section class="container-sm mx-auto row row-cols-1 row-cols-lg-2 g-2 g-lg-4 mt-2 py-5">
-
-		<div class="col">
-			<img src="./images/website/index-2.jpg" class="h-100 w-100 object-fit-cover"  alt="i">
-		</div>
-
-		<div class="col nax flex-column justify-content-center">
-			<p class="fw-bold text-pacifico fs-5">Funny Thing here</p>
-			<p>
-				Quod nesciunt architecto minus quo. 
-				Sint rem accusantium consequuntur culpa cupiditate aperiam, 
-				omnis sequi quaerat necessitatibus asperiores officia eius incidunt, quos temporibus.
-			</p>
-
-			<ul>
-				{[1,2].map( item => <li>
-					<h6>Lorem {item}</h6>
-					<p>Maiores impedit! Deserunt voluptatem sed nobis quae assumenda aspernatur natus officia doloremque?</p>
-				</li>)}
-			</ul>
-
-		</div>
-
-	</section>
-
-	<section style="max-width: 1080px;" class="container-sm mx-auto py-3">
+	<section class="container-sm mx-auto py-4 mb-4">
 
 		<div class="nav justify-content-between pb-1 mb-3">
 			<span class="fs-5 border-bottom fw-bold">Latest Posts</span> 
@@ -142,9 +125,31 @@ const headerInfo = {
 		</div>
 
 		<div class="d-flex justify-content-between gap-2 overflow-x-auto hide-scroll-bar ">
-			<!-- {posts[0] && posts.slice(0,3).map( post => <div style="max-width:21rem;" class="flex-shrink-0">
+			{sortedPosts[0] && sortedPosts.map( post => <div style="max-width:21rem;" class="flex-shrink-0">
 				<BlogCard displayStyle={3} post={post} />
-			</div> )} -->
+			</div> )}
+		</div>
+
+	</section>
+
+	
+	<section class="container-sm bg-body-tertiary shadow-sm rounded-2 mx-auto my-4 row  g-3 g-lg-5 mt-2 py-3">
+
+		<div class="col-5">
+			<img src="./images/website/orange.png" style="max-width: 250px;max-height: 320px;" class="h-100 w-100 object-fit-contain"  alt="i">
+		</div>
+
+		<div class="col-7 nav flex-column justify-content-center">
+			<p class="fw-light text-uppercase text-secondary">the best air care e-commerce</p>
+			<h2 class="fw-semibold">Check Out Most  <br/> Healthy Tips.</h2>
+			<p>
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, odit, 
+				voluptatum nesciunt aspernatur ratione non reiciendis harum officia 
+				consectetur vero eius aut fugit temporibus iste aliquid quis autem neque nostrum!
+			</p>
+			<a class="icon-link icon-link-hover fw-semibold" href="/blog">
+				see posts <i class="bi bi-arrow-right"></i>
+			</a>
 		</div>
 
 	</section>

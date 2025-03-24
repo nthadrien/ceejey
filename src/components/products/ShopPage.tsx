@@ -34,7 +34,7 @@ function ShopPage(props: ShopProps): JSX.Element {
 
   const filteredProducts = createMemo(() => {
     const catgo = myQuery().category;
-    new Promise(r => setTimeout(() => setLoading(false), 600));
+    new Promise(r => setTimeout(() => setLoading(false), 200));
     return props.products.filter(item => ["none", "null", "undefined", null, undefined].includes(catgo) ? true : item.category === catgo);
   });
 
@@ -54,7 +54,7 @@ function ShopPage(props: ShopProps): JSX.Element {
 
       <section class="col-md-9 nav flex-column justify-content-between ">
 
-        <div class={`row  ${style() === 1 ? "row-cols-2 row-cols-lg-3 row-cols-xl-4" : "row-cols-1 row-cols-xl-2"} g-1 g-lg-2 mb-4 p-2`}>
+        <div class={`row  ${style() === 1 ? "row-cols-2 row-cols-lg-3 row-cols-xl-4" : "row-cols-1 row-cols-xl-2"} g-2 g-lg-3 mb-4 p-2`}>
 
           <For each={filteredProducts().slice(startAt(), endAt())} >
             {item => <div class="col">
