@@ -1,6 +1,7 @@
 ---
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
 import Header from "@components/headers/Headers.astro";
+import CheckoutCart from "@components/products/CheckoutCart";
 import Layout from "@layouts/ELayout.astro";
 
 const headerInfo = {
@@ -15,57 +16,14 @@ const headerInfo = {
 	<BreadCrumb />
 	<Header title={headerInfo.title} description={headerInfo.description} />
 
-    <main class="container-xxl mx-auto row g-3">
+    <main class="container-xxl mx-auto row g-3 py-4 px-2">
 
 
 		<section class="col-md-5 col-lg-4">
 
-			<h4 class="text-swanky">Shopping Cart Cart</h4>
+			<h4 class="text-swanky border-bottom">Shopping Cart</h4>
 
-
-			<ul class="list-unstyled p-0">
-
-				{[1,2,3].map( item => <li class="border-bottom d-flex justify-content-between align-items-center gap-2 position-relative p-2">
-
-					<div style="height: 64px;width: 64px;" class="col-3 text-bg-dark">img</div>
-
-					<button style="right:5px;top:0px;" class="btn btn-sm position-absolute">
-						<i class="fw-bolder bi bi-x-lg text-danger"></i>
-					</button>
-
-					<div class="col-9 lh-sm">
-
-						<h6 class="text-pacifico">Name</h6>
-						<p>Lipstick coco chanel , Color(blue) </p>
-
-						<div class="d-flex justify-content-between align-items-center gap-2">
-							<span>
-								qty:    
-								<button class="btn btn-sm"> - </button>  
-									4 
-								<button class="btn btn-sm">+</button> 		
-							</span> 
-							
-							<span>price: $300</span>
-						</div>
-					</div>
-
-				</li>)}
-			</ul>
-
-			<div>
-				<p>Total Items Price : $400,5</p>
-				<p>Shipping: ---</p>
-				<p>Total Price: $3000,4</p>
-			</div>
-
-			<div class="form-floating col-12">
-				<input class="form-control" type="text" name="promo" placeholder=""  required/>
-				<label class="form-label ms-2" for="promo">Promo Code</label>
-			</div>
-
-
-
+			<CheckoutCart client:load />
 
 		</section>
 

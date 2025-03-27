@@ -22,15 +22,6 @@ const categories: string[] = [
     "Skincare",
     "Haircare",
 ];
-
-const brands: string[] = [
-    "Maybelline",
-    "MAC Cosmetics",
-    "Estée Lauder",
-    "NARS",
-    "Stila",
-    "Rare Beauty",
-];
 ---
 
 <footer class="container-fluid bg-body-tertiary p-2 d-flex flex-column align-items-center gap-4 border-primary pt-3">
@@ -58,9 +49,12 @@ const brands: string[] = [
             <h3 class="text-swanky mb-3">pages</h3>
 
             <ul class="nav flex-md-column gap-1">
-                {pages.map( item => <li class="nav-item">
-                    <a href={item.link} class="nav-link text-capitalize p-0">categories</a>
+                {categories.map( item => <li class="nav-item">
+                    <a href={`/shop?category=${item}&page=0&size=12`} class="nav-link text-capitalize p-0">{item}</a>
                 </li>)}
+                <li class="nav-item">
+                    <a href={`/shop?category=none&page=0&size=12`} class="nav-link text-capitalize p-0">more...</a>
+                </li>
             </ul>
 
         </aside>

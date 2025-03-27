@@ -2,15 +2,15 @@
 
 <form class="row g-1">
 
-    <label class="form-label col-md-6">
+    <label class="form-label col-12">
         <input type="text" class="form-control" name="name" placeholder="name / pseudo " required/>
     </label>
 
     
-    <label class="form-label col-md-6">
+    <label class="form-label col-12">
         <select name="rating" class="form-select">
             <option>Please Select a rating</option>
-            {[0,1,2,3,4,5].map( item  => <option value={item}>
+            {[1,2,3,4,5].map( item  => <option value={item}>
                 {item}
             </option>)}
         </select>

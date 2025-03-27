@@ -7,7 +7,7 @@ import SearchNav from "./SearchNav";
 import ProductCard from "@components/cards/ProductCard";
 import Pagination from "@components/paginations/Pagination";
 import { type ShopProps, type SearchQueryType, initialQuery } from "./search.type";
-import LoadingSreen from "@components/LoadingScreen";
+import { LoadingBoxes } from "@components/loading/loading";
 
 
 
@@ -34,7 +34,7 @@ function ShopPage(props: ShopProps): JSX.Element {
 
   const filteredProducts = createMemo(() => {
     const catgo = myQuery().category;
-    new Promise(r => setTimeout(() => setLoading(false), 200));
+    new Promise(r => setTimeout(() => setLoading(false), 420));
     return props.products.filter(item => ["none", "null", "undefined", null, undefined].includes(catgo) ? true : item.category === catgo);
   });
 
@@ -42,7 +42,7 @@ function ShopPage(props: ShopProps): JSX.Element {
   const endAt = () => startAt() + myQuery().size;
   const changeStyle = (a: number) => setStyle(a);
 
-  return (<Show when={!loading()} fallback={<LoadingSreen />}>
+  return (<Show when={!loading()} fallback={<LoadingBoxes />}>
 
     <main style="max-width: 1280px;" class="container g-2 row mx-auto">
 

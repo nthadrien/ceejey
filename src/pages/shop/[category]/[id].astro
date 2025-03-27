@@ -63,6 +63,8 @@ const headerInfo = {
 
     <BreadCrumb page={product.data.name} />
 
+    
+
 
     <main class="container mx-auto row justify-content-between g-2 p-2">
         
@@ -90,6 +92,7 @@ const headerInfo = {
 
         </section>
 
+        <!-- product decription section -->
 
         <section class="col-md-7">
 
@@ -188,7 +191,14 @@ const headerInfo = {
                         </div>) : <h6>No reviews posted</h6> }
 
                         { reviews[0] && <b> Others : {(reviewStats['others']/reviews.length ) * 100}% </b> }
-                        <CustomerReview />
+
+                        <p>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+                                Add a Review
+                            </button>
+                        </p>
+                        
                     </section>
 
                     <section class="col-lg-8 d-flex flex-column gap-2">
@@ -202,6 +212,8 @@ const headerInfo = {
     </section>
 
 </Layout>
+
+
 
 
 <script>
@@ -238,12 +250,26 @@ const headerInfo = {
     const smallImgs:NodeListOf<HTMLImageElement>  = document.querySelectorAll("#imgs");
 
     smallImgs.forEach( img => img.addEventListener( "click" , (e:any) => {
-
-        console.log(e.target.alt)
-
         if ( mainImg ) {
             mainImg.src = e.target.src;
             mainImg.alt = e.target.alt;
         }
     }))
 </script>
+
+ 
+
+<!-- Modal -->
+<section class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-bg-primary">
+                <h1 class="modal-title fs-5" id="addReviewModalLabel">Thanks for your Review</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <CustomerReview />
+            </div>
+        </div>
+    </div>
+</section>
