@@ -53,13 +53,29 @@ function ShopPage(props: ShopProps): JSX.Element {
 
     <main style="max-width: 1280px;" class="container g-2 row mx-auto">
 
-      <SearchNav displayStyle={style()} changeStyle={changeStyle} current={myQuery()} size={filteredProducts().length} />
+      <SearchNav
+        size={filteredProducts().length}
+        current={myQuery()}
+        displayStyle={style()}
+        changeStyle={changeStyle}
+      />
 
-      <aside class="col-md-3">
-        <FilterProducts initial={myQuery()} brands={props.brands} categories={props.categories} />
-      </aside>
+      <nav class="col-md-3" aria-label="products search">
+
+        <button class="d-inline d-md-none btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#searchFilter" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-search"></i> 
+        </button>
+
+        <aside class="collapse-md" id="searchFilter">
+          <FilterProducts initial={myQuery()} brands={props.brands} categories={props.categories} />
+        </aside>
+
+      </nav>
+      
 
       <section class="col-md-9 nav flex-column justify-content-between ">
+
+        {!filteredProducts()[0] && <h1 class="text-zeyada p-4">Sorry the product you are looking for is not available.</h1>}
 
         <div class={`row  ${style() === 1 ? "row-cols-2 row-cols-lg-3 row-cols-xl-4" : "row-cols-1 row-cols-xl-2"} g-2 g-lg-3 mb-4 p-2`}>
 

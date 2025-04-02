@@ -15,7 +15,7 @@ interface Props {
 export default function ProductCard(props:Props): JSXElement {
 
 
-    return (<aside class={`product-card position-relative d-flex align-items-center gap-2 p-2 border ${ props.displayStyle === 2 ? "justify-content-between" : "flex-column" }`}>
+    return (<aside class={`product-card position-relative d-flex align-items-center gap-2 p-2 ${ props.displayStyle === 2 ? "justify-content-between" : "flex-column" }`}>
 
         <Show when={ props.discount && props.discount > 0}>
             <small style="width:fit-content;z-index:1" class="position-absolute text-pacifico start-0 top-0 p-2 text-bg-primary rounded-2">
@@ -44,12 +44,13 @@ export default function ProductCard(props:Props): JSXElement {
                 </Show>
             </a>
 
-            <div class={ `bg-body nav gap-2 ${props.displayStyle == 1 ? "options position-absolute shadow-sm" : "" }`}>
-                <button class="btn">
+            <div class={ `bg-body nav gap-2 rounded-3 ${props.displayStyle == 1 ? "options position-absolute shadow" : "" }`}>
+
+                <button title="Add to Cart" class="btn">
                     <i class="bi bi-handbag"></i>
                 </button>
 
-                <button class="btn">
+                <button title="Add to WishList" class="btn">
                     <i class="bi bi-stars"></i>
                 </button>
             </div>

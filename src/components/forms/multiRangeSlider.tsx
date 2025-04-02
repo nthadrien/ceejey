@@ -1,11 +1,11 @@
-import { createEffect, createSignal, onMount, type JSX } from "solid-js";
+import { createEffect, createSignal, type JSX } from "solid-js";
 
 interface Props {
     values: number[];
 }
 
 
-function MultiRangeSlider(props:Props) {
+function MultiRangeSlider(props:Props):JSX.Element {
 
     let indicatorELement!: HTMLDivElement;
     const [values, setValues] = createSignal<number[]>([ ...props.values]);
@@ -19,10 +19,6 @@ function MultiRangeSlider(props:Props) {
         const max = parseInt(e.currentTarget.value);
         setValues( _ => [  values()[0] , max ]);
     }
-
-    // onMount(()=> {
-    //     if (props.values.length > 1 ) setValues([...props.values])
-    // })
 
     createEffect(()=>{
         indicatorELement.style.left= values()[0] + "%";

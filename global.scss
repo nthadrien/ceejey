@@ -49,7 +49,7 @@ $form-range-track-height:  .3rem;
 @import "./node_modules/bootstrap/scss/buttons";
 // @import "./node_modules/bootstrap/scss/transitions";
 @import "./node_modules/bootstrap/scss/dropdown";
-@import "./node_modules/bootstrap/scss/button-group";
+// @import "./node_modules/bootstrap/scss/button-group";
 @import "./node_modules/bootstrap/scss/nav";
 @import "./node_modules/bootstrap/scss/navbar";
 // @import "./node_modules/bootstrap/scss/card";
@@ -110,23 +110,6 @@ a, .nav-link {
 
 .small-x {
     font-size: x-small !important;
-}
-
-.btn-check:checked ~ .btn {
-    background-color: var(--pry-clr);
-    color: var(--neutral-clr);
-}
-
-@media (min-width: 768px) {
-    body {
-        font-size: 14px !important;
-    }
-}
-
-@media (min-width: 1280px) {
-    body {
-        font-size: 15px !important;
-    }
 }
 
 .bg-gray-50 {
@@ -208,7 +191,7 @@ a, .nav-link {
 // intersection observer classes:
 *[data-iobs] {
     opacity: 0;
-    transition: all 0.8s ease-out;
+    transition: all 1.1s ease-out;
 
     &.seen {
         transform: translate(0,0);
@@ -240,4 +223,43 @@ a, .nav-link {
 
 input[type="range"]::-webkit-slider-thumb {
     z-index: 2;
+}
+
+.collapse-md {
+    display: none;
+}
+
+.collapse-md.show {
+    display: inline;
+}
+
+// 
+.product-card {
+    & .options {
+        top:30%;
+        left: calc(50% - 25px);
+        opacity: 0;
+        transition: all 0.6s linear;
+    }
+
+    &:hover .options {
+        top:45%;
+        opacity: 1;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .collapse-md {
+        display: inline;
+    }
+
+    body {
+        font-size: 14px !important;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    body {
+        font-size: 16px !important;
+    }
 }

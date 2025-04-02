@@ -24,12 +24,12 @@ const headerInfo = {
             <aside class="col">
                 <h2 class="text-zeyada fw-bold text-primary">Who we Are</h2>
 
-                <p class="lead text-info">
+                <p class="fs-4 text-info">
                     We care about your hair ...Eveniet esse saepe sequi,
                     molestiae, nihil ipsa voluptate pariatur rem obcaecati
                     nostrum
                 </p>
-                <p>
+                <p data-iobs="slide-left">
                     Aliquam aperiam nisi accusamus delectus minima soluta nobis
                     maxime unde sint esse. Vel minima earum modi necessitatibus
                     deserunt molestiae numquam officia odio.
@@ -40,6 +40,7 @@ const headerInfo = {
             </aside>
 
             <img
+                data-iobs="slide-right"
                 src="/images/website/about-1.jpg"
                 loading="lazy"
                 class="col rounded-2 object-fit-cover"
@@ -100,7 +101,7 @@ const headerInfo = {
 
             <div class="col row row-cols-1 row-cols-sm-2 g-4">
                 {
-                    [1,3,2,4].map((item) => (
+                    [1,3].map((item) => (
                         <div class="col d-flex flex-column gap-2">
                             <div
                                 style="width: fit-content;height:fit-content;"
@@ -131,7 +132,8 @@ const headerInfo = {
 
 <div class="container-fluid">
     <section class="container row py-3 mx-auto">
-        <aside class="col-md-4 col-lg-5">
+
+        <aside data-iobs="slide-left" class="col-md-4 col-lg-5">
             <h2 class=" text-zeyada fw-bold text-primary">
                 Frequently Asked Questions
             </h2>
@@ -150,7 +152,7 @@ const headerInfo = {
         >
             {
                 [1, 2, 3].map((item) => (
-                    <div class={`p-1 px-2 ${item > 1 ? "border-top" : ""}`}>
+                    <div data-iobs="slide-up" class={`p-1 px-2 ${item > 1 ? "border-top" : ""}`}>
                         <h5>Question here</h5>
                         <p class="">
                             Answer to auestion : Lorem ipsum dolor sit amet

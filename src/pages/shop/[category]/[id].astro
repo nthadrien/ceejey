@@ -63,14 +63,12 @@ const headerInfo = {
 
     <BreadCrumb page={product.data.name} />
 
-    
-
-
     <main class="container mx-auto row justify-content-between g-2 p-2">
         
         <section class="col-md-5 d-flex justify-content-between gap-2">
 
             <img 
+                data-iobs="slide-left"
                 id="mainImg"
                 style="max-height: 320px; object-fit: contain;" 
                 class="col-8"
@@ -96,7 +94,7 @@ const headerInfo = {
 
         <section class="col-md-7">
 
-            <p>
+            <p data-iobs="slide-right">
                 <span class="h5">{product.data.category} </span> -
                 <small class="smaller fw-light">{product.data.brand}</small>
             </p>
