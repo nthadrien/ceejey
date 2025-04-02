@@ -24,6 +24,8 @@ $neutral : #f5f5f5;
 $offcanvas-horizontal-width: max(40vw,450px);
 $focus-ring-opacity:    .12;
 $focus-ring-width:      .15rem;
+$form-range-track-height:  .3rem;
+
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "./node_modules/bootstrap/scss/variables";
 @import "./node_modules/bootstrap/scss/variables-dark";
@@ -228,4 +230,14 @@ a, .nav-link {
 
 *[data-iobs="slide-right"] {
     transform: translateX(80px);
+}
+
+// range progressbar
+
+.range-indicator {
+    z-index: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    z-index: 2;
 }

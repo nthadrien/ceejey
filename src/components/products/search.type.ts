@@ -25,8 +25,8 @@ export type SearchQueryType = {
     page: number;
     size: number;
     category: string;
-    minP?: number;
-    maxP?: number;
+    minP: number;
+    maxP: number;
     promo?: string;
     sortby?:string;
 }
@@ -36,5 +36,5 @@ export const initialQuery = {
     size: 12,
     category: "none",
     minP : 1,
-    maxP : 100,
+    maxP : 100
 }

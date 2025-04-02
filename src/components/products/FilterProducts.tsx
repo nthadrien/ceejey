@@ -1,5 +1,6 @@
 import { type JSX } from "solid-js";
 import type { SearchQueryType } from "./search.type";
+import MultiRangeSlider from "@components/forms/multiRangeSlider";
 
 interface Props {
   initial : SearchQueryType;
@@ -13,6 +14,7 @@ const FilterProducts = (props:Props) : JSX.Element => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const dataObj = Object.fromEntries(formData.entries());
+    console.log(dataObj);
     const goTO = new URLSearchParams(dataObj as {}).toString();
     window.location.search = "?page=0&size=12&" + goTO;
   }
@@ -33,8 +35,7 @@ const FilterProducts = (props:Props) : JSX.Element => {
 
     <div class="p-2 rounded-2">
       <p class="border-bottom pb-2 fw-bold">Price Range</p>
-        <input type="range" class="form-range" name="minP"  min={1} max={100} />
-        <p class="w-100 text-swanky text-center"> $ 1 - $ 12 </p>
+      <MultiRangeSlider values={[props.initial.minP,props.initial.maxP]} />
     </div>
 
     <div class="p-2">

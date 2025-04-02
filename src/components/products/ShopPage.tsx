@@ -24,7 +24,7 @@ function ShopPage(props: ShopProps): JSX.Element {
       page: data.page ? parseInt(data.page) : 0,
       size: data.size ? parseInt(data.size) : 6,
       category: data.category ? data.category : "none",
-      minP: data.minP ? parseInt(data.minP) : 1,
+      minP: data.minP ? parseInt(data.minP) : 0,
       maxP: data.maxP ? parseInt(data.maxP) : 100,
       promo: data.promo ?? "none",
       sortby: data.sorty ?? "none"
@@ -34,8 +34,15 @@ function ShopPage(props: ShopProps): JSX.Element {
 
   const filteredProducts = createMemo(() => {
     const catgo = myQuery().category;
+    const promo = myQuery().promo == "on" ? true : false;
+    const minPrice = (myQuery().minP);
+    const maxPrice = (myQuery().maxP);
     new Promise(r => setTimeout(() => setLoading(false), 420));
-    return props.products.filter(item => ["none", "null", "undefined", null, undefined].includes(catgo) ? true : item.category === catgo);
+    return props.products.filter(
+      item => (["none", "null", "undefined", null, undefined].includes(catgo) ? true : item.category === catgo)
+          && (item.price >= minPrice && item.price <= maxPrice ) 
+          && ( !promo ? true : item.discount )
+    );
   });
 
   const startAt = () => myQuery().page * myQuery().size;
