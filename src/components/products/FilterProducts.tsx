@@ -14,7 +14,6 @@ const FilterProducts = (props:Props) : JSX.Element => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const dataObj = Object.fromEntries(formData.entries());
-    console.log(dataObj);
     const goTO = new URLSearchParams(dataObj as {}).toString();
     window.location.search = "?page=0&size=12&" + goTO;
   }

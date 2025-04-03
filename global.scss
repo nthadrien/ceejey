@@ -58,7 +58,7 @@ $form-range-track-height:  .3rem;
 // @import "./node_modules/bootstrap/scss/pagination";
 // @import "./node_modules/bootstrap/scss/badge";
 @import "./node_modules/bootstrap/scss/alert";
-@import "./node_modules/bootstrap/scss/progress";
+// @import "./node_modules/bootstrap/scss/progress";
 @import "./node_modules/bootstrap/scss/list-group";
 @import "./node_modules/bootstrap/scss/close";
 @import "./node_modules/bootstrap/scss/toasts";
@@ -246,6 +246,16 @@ input[type="range"]::-webkit-slider-thumb {
         top:45%;
         opacity: 1;
     }
+}
+
+.main-header {
+    min-height: max(35vh,240px);
+    backdrop-filter: opacity(70%);
+    background: $neutral url("./images/website/index-1.jpg") no-repeat center;
+    background-blend-mode:multiply;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    filter: grayscale(80%);
 }
 
 @include media-breakpoint-up(md) {

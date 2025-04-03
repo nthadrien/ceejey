@@ -13,7 +13,6 @@ export type CartItem = {
     discount?: string;
 }
 
-
 export const notifications = map<{ message: string, type:"success"|"warning"}[]> ([]);
 
 //  shopping cart functionalities ----------------------------------
@@ -50,30 +49,26 @@ export type NotifyUser = {
 
 export const notifyUser = (a:NotifyUser) => {
 
+    console.log("working on adding on dom")
+
     const toast = document.createElement("div");
-    toast.className = `toast align-items-center border-0 show shadow-lg ${a.type == "danger" ? "text-bg-danger" : a.type =="warning" ?"text-bg-warning" : "text-bg-primary"}`;
+    toast.className = `d-flex gap-2 align-items-center p-2 shadow position-fixed top-50 start-50 translate-middle bg-${a.type == "danger" ? "danger" : a.type =="warning" ?"warning" : "success"}-subtle`;
     toast.role = "alert";
     toast.ariaAtomic = "true";
     toast.id = "toast";
 
-    let iClass = `fs-4 me-2 bi  bi-${a.type == "danger" ? "emoji-grimace" : a.type =="warning" ?"emoji-smile-upside-down" : "emoji-wink"}`
+    let iClass = `fs-5 bi bi-${a.type == "danger" ? "emoji-grimace-fill" : a.type =="warning" ?"emoji-smile-upside-down-fill" : "emoji-laughing-fill"}`
 
     const innertoast = document.createElement("div");
     innertoast.innerHTML = `<i class="${iClass}"></i> ${a.message}`;
-    innertoast.className ="toast-body d-flex gap-2 text-monospace"
-
-    // const btn = document.createElement("button");
-    // btn.className = "btn-close btn-close-white me-2 m-auto"
-    // btn.setAttribute("bs-dismiss","toast")
-    // btn.ariaLabel = "close";
-
+    innertoast.className ="toast-body d-flex gap-2 text-monospace";
     toast.append(innertoast);
-    // toast.append(btn);
-
     document.body.append(toast);
 
     setTimeout(()=>{
         document.body.removeChild(toast);
-    }, 5000)
+    }, 5000);
+
+    return;
 
 }

@@ -12,7 +12,7 @@ function NavCart() {
   const mouseLeave = () => setOpen(false);
 
   return (
-    <div onMouseLeave={mouseLeave} class="btn-group">
+    <div onMouseLeave={mouseLeave} class="btn-group dropend">
 
       <button onClick={changeOpen} type="button" class="btn position-relative" aria-expanded="false">
         <i class="bi bi-handbag fs-5"></i> 
@@ -23,18 +23,19 @@ function NavCart() {
 
       <Show when={open()}>
 
-        <ul style={"width: 260px;"} class="dropdown-menu show end-0 top-100">
+        <ul style={"width: 260px;"} class="dropdown-menu p-2 show end-0 top-100">
 
-          <For each={$cart()} fallback={<h5>Nothing add to cart.</h5>}>
+          <For each={$cart()} fallback={<h6>Nothing add to cart.</h6>}>
             {item => <li class="dropdown-item d-flex gap-2">
-              <img style={"max-height:48px;max-width:48px"} class="object-fit-contain col-3" src={`/images/products/${item.image}`} alt="img" />
-              <small class="col-9" style={"font-size:smaller;"}>
+              <img style={"max-height:48px;max-width:48px"} class="object-fit-contain flex-shrink-0" src={`/images/products/${item.image}`} alt="img" />
+              <small class="" style={"font-size:smaller;"}>
                 <b>{item.category.split("-")[2]}</b> <br/>
                 {item.qty}  {item.color}
               </small>
             </li>}
           </For>
           <li><a href="/checkout" class="dropdown-item"> <i class="bi bi-clipboard2-check"></i> checkout </a></li>
+          <li><a href="/bookmarked" class="dropdown-item"> <i class="bi bi-clipboard2-check"></i> Wish list </a></li>
         </ul>
       </Show>
     </div>
