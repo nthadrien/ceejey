@@ -32,6 +32,9 @@ function ShopPage(props: ShopProps): JSX.Element {
     setMyQuery(newOne)
   });
 
+  
+  const changeStyle = (a: number) => setStyle(a);
+
   const filteredProducts = createMemo(() => {
     const catgo = myQuery().category;
     const promo = myQuery().promo == "on" ? true : false;
@@ -45,9 +48,17 @@ function ShopPage(props: ShopProps): JSX.Element {
     );
   });
 
-  const startAt = () => myQuery().page * myQuery().size;
-  const endAt = () => startAt() + myQuery().size;
-  const changeStyle = (a: number) => setStyle(a);
+  const sliceAndFilter = ():ShopProps["products"] => {
+    const startAt = myQuery().page * myQuery().size;
+    const endAt = startAt + myQuery().size;
+    if (myQuery().sortby == "popularity") {
+      console.log( myQuery().sortby )
+      return filteredProducts().sort( ( a ,b ) => a.reviews.length - b.reviews.length ).slice(startAt, endAt);
+    } else
+    return filteredProducts().sort( ( a ,b ) => (b.price) - (a.price) ).slice(startAt, endAt);
+  }
+
+
 
   return (<Show when={!loading()} fallback={<LoadingBoxes />}>
 
@@ -79,7 +90,7 @@ function ShopPage(props: ShopProps): JSX.Element {
 
         <div class={`row  ${style() === 1 ? "row-cols-2 row-cols-lg-3 row-cols-xl-4" : "row-cols-1 row-cols-xl-2"} g-2 g-lg-3 mb-4 p-2`}>
 
-          <For each={filteredProducts().slice(startAt(), endAt())} >
+          <For each={sliceAndFilter()} >
             {item => <div class="col">
               <ProductCard
                 id={item.id}

@@ -14,20 +14,21 @@ const { remarkPluginFrontmatter  } = await render(post);
 
 <div class={`p-1 ${ displayStyle == 2 ? 'd-flex gap-2' : ''}`}>
 
-    <img style="height: 240px;" src={post.data.image.src} alt={post.data.image.alt} class="card-img-top rounded-2 object-fit-fill w-100" />
+    <img style="height: 240px;" src={post.data.image.src} alt={post.data.image.alt} class="rounded-2 object-fit-fill w-100" />
    
     <div  class="d-flex flex-column gap-1 p-1 w-100">
 
-        <div class="fw-light smaller">
-            <span>{post.data.publishDate.toDateString().substring(4)}</span>
-            <span class="vr mx-2" />
-            {remarkPluginFrontmatter.minutesRead}
-            <p>
-                {post.data?.tags.map( tag => <a href={`/blog/?page=1&tag=${tag}`} class="border mb-1 me-1 px-1 rounded-1 bg-gray-50">{tag} </a>)}
-            </p>
+        <div class="fw-light smaller my-2">
+            {post.data?.tags.map( tag => <a href={`/blog/?page=1&tag=${tag}`} class="border mb-1 me-1 px-1 rounded-1 bg-gray-50">{tag} </a>)}    
         </div>
 
         <h5 class="fw-bold">{post.data.title}</h5>
+
+        <small class="fw-light">
+            <span>{post.data.publishDate.toDateString().substring(4)}</span>
+            <span class="vr mx-2" />
+            {remarkPluginFrontmatter.minutesRead}
+        </small>
 
         {displayStyle === 1 ? <p>{post.data.description}</p> : ""}
 

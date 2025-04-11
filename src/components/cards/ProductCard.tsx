@@ -18,8 +18,8 @@ export default function ProductCard(props:Props): JSXElement {
     return (<aside class={`product-card position-relative d-flex align-items-center gap-2 p-2 ${ props.displayStyle === 2 ? "justify-content-between" : "flex-column" }`}>
 
         <Show when={ props.discount && props.discount > 0}>
-            <small style="width:fit-content;z-index:1" class="position-absolute text-pacifico start-0 top-0 p-2 text-bg-primary rounded-2">
-            - {props.discount } %
+            <small style="width:fit-content;z-index:1" class="position-absolute text-pacifico fw-bold start-0 top-0 p-2 text-bg-primary rounded-2">
+            -{props.discount }%
             </small>
         </Show>
 

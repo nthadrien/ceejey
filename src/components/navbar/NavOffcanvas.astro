@@ -1,51 +1,82 @@
 ---
+import { children } from "solid-js";
 import WbLogo from "./WbLogo.astro";
+import { map } from "astro:schema";
+
+
+const navo = [
+  {
+    name: "Home",
+    link:"/#"
+  },
+  {
+    name: "Blog",
+    link:"/blog",
+  },
+  {
+    name: "Shop",
+    link:"/shop",
+  },
+  {
+    name: "About",
+    children : [
+    {
+        name: "Who we are",
+        link:"/about#who-we-are"
+      },
+      {
+        name: "Services",
+        link:"/about#services"
+      },
+      {
+        name: "F.A.Q",
+        link:"/about#faq"
+      }
+    ]
+
+  },
+  {
+    name: "Get to Us",
+    link: "/contacts"
+  },
+];
+
 ---
 
 <aside class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
-    <section class="offcanvas-header">
-      <!-- <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5> -->
-        <div class="offcanvas-title" id="offcanvasNavbarLabel">
-            <WbLogo classPassed="fs-5"/>
-        </div>
-        <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-          <i class="bi bi-x-lg"></i>
-        </button>
-    </section>
+  <section class="offcanvas-header">
+    <div class="offcanvas-title" id="offcanvasNavbarLabel">
+        <WbLogo classPassed="fs-5"/>
+    </div>
+    <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </section>
 
-    <section class="offcanvas-body fs-3 fw-light">
+  <section class="offcanvas-body fs-3 fw-light">
 
-      <ul class="navbar-nav justify-content-start flex-grow-1 pe-3 text-swanky text-start">
+    <aside class="accordion accordion-flush text-start text-swanky" id="accordionMenu">
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/#">Home</a>
-        </li>
+      {navo.map( (item) => <div class="accordion-item">
+          
+          {item.children ? (<h5 class="accordion-header">
+            <button class="accordion-button px-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${item.name}`} aria-expanded="false" aria-controls={`flush-collapse${item.name}`}>
+              {item.name}
+            </button>
+          </h5>
+          <div id={`collapse${item.name}`} class="accordion-collapse collapse" data-bs-parent={`#accordionMenu`}>
+            <div class="accordion-body">
+              {item.children.map( subpage => <a class={`fs-6 d-block p-1`} href={subpage.link}>{subpage.name}</a>)}
+            </div>
+          </div>) : <p class="nav-item fs-6 px-1">
+            <a class="nav-link"  href={item.link}>
+              {item.name}
+            </a>
+          </p>}
 
-        <li class="nav-item">
-          <a class="nav-link" href="/blog">blog</a>
-        </li>
+        </div>)}
 
-        <li class="nav-item">
-          <a class="nav-link" href="/shop">shop</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            about
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        
-      </ul>
+    </aside>
       
-    </section>
+  </section>
 
-  </aside>
+</aside>

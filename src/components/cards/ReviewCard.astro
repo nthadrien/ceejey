@@ -19,9 +19,9 @@ const rating = ():string[] => {
 
 ---
 
-<div class="rounded p-3 border-start border-bottom" style="transition: all 0.3s ease;">
+<div class="rounded p-2 border-start border-top border-secondary-subtle" style="transition: all 0.3s ease;">
         
-    <div class="small mb-2">
+    <small class="mb-2">
 
         <span class="fs-6 fw-semibold">{review.data.name}</span>
         <span class="vr mx-2 mx-lg-4" />
@@ -29,10 +29,8 @@ const rating = ():string[] => {
         <span class="vr mx-2 mx-lg-4" />
         
         <i class="bi bi-bag-check-fill text-success"></i> Verified Purchase
-    </div>
-
-    <p class="mb-2">"{review.data.description} Lorem  necessitatibus quo nemo soluta inventore sint adipisci ipsa, at autem, fugit odio? Magnam accusantium excepturi illo ducimus eaque?"</p>
-    
-    <small class="text-muted">Reviewed on {new Date(review.data.date).toDateString()}</small>
+    </small>
+    <p style="font-size: smaller;">"{review.data.description} Lorem  necessitatibus quo nemo soluta inventore sint adipisci ipsa, at autem, fugit odio? Magnam accusantium excepturi illo ducimus eaque?"</p>
+    <small class="text-muted fw-light">Reviewed on {new Date(review.data.date).toDateString()}</small>
         
 </div>

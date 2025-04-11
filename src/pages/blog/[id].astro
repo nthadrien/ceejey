@@ -56,7 +56,7 @@ const headerInfo = {
             <aside class="col-lg-4">
                 <h4 class="text-swanky fw-bold my-3">Blog Tags:</h4>
                 <small class="nav gap-2"> 
-                    {post.data.tags.map( tag => <a href={`/blog/?page=1&tag=${tag}`} class="border border-primary-subtle text-monospace text-capitalize p-1">{tag}</a>)}
+                    {post.data.tags.map( tag => <a href={`/blog/?page=1&tag=${tag}`} class="bg-gray-50 text-monospace text-capitalize px-1">{tag}</a>)}
                 </small>
                 <TableOfContent headings={headings} />
             </aside>

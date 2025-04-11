@@ -1,6 +1,6 @@
 
 
-<form class="row g-1">
+<form id="review" class="row g-1">
 
     <label class="form-label col-12">
         <input type="text" class="form-control" name="name" placeholder="name / pseudo " required/>
@@ -22,3 +22,35 @@
 
     <button style="width: fit-content;" class="btn btn-sm btn-primary"> Submit</button>
 </form>
+
+<script>
+    import { notifyUser, tg_tokens } from "src/stores/users";
+
+    document.getElementById("review")?.addEventListener("submit", async (ev: SubmitEvent) => {
+        ev.preventDefault();
+        const formData = new FormData(ev.target as HTMLFormElement);
+        const dataObj = Object.fromEntries(formData.entries());
+        const product = window.location.pathname.split("/").slice(2)
+        let text = `Review of Product: ${product}.\n`;
+
+        for( let x in dataObj ) {
+            text += `${x} : ${dataObj[x]} \n`;
+        }
+
+        const resp = await fetch(
+            `https://api.telegram.org/bot${tg_tokens.telegram_bot_token}/sendMessage?chat_id=${tg_tokens.chat_id}&text=${encodeURI(text)}`,
+            { method: "POST" },
+        );
+
+        if (resp.ok) {
+            notifyUser({
+                type: "success", message: "Thanks, your comment will appear shortly.",
+            });
+            const btn:HTMLButtonElement | null = document.querySelector("button[data-bs-target='#addReviewModal']");
+            if ( btn ) btn.click();
+        } else {
+            notifyUser({ type: "warning", message: JSON.stringify(resp.json() )});
+        }
+    });
+
+</script>

@@ -17,7 +17,7 @@ function NavCart() {
       <button onClick={changeOpen} type="button" class="btn position-relative" aria-expanded="false">
         <i class="bi bi-handbag fs-5"></i> 
         <small class="text-bg-primary px-2 rounded-pill position-absolute top-100 start-75 translate-middle x-small">
-          { $cart().length > 0 ? $cart().length: "."  }
+          { $cart().length > 0 ? $cart().length: ""  }
         </small>
       </button>
 

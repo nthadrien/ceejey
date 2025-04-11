@@ -1,6 +1,6 @@
 ---
 import Brands from "@components/Brands.astro";
-import Headers from "@components/headers/Headers.astro";
+import Header from "@components/headers/Headers.astro";
 import Layout from "@layouts/ELayout.astro";
 
 const headerInfo = {
@@ -12,7 +12,7 @@ const headerInfo = {
 
 <Layout {...headerInfo}>
     <main>
-        <Headers
+        <Header
             title={headerInfo.title}
             description={headerInfo.description}
         />
@@ -22,9 +22,9 @@ const headerInfo = {
             class="container-xl p-2 py-3 mx-auto row row-cols-1 row-cols-md-2 g-3 align-items-center justify-content-center"
         >
             <aside class="col">
-                <h2 class="text-zeyada fw-bold text-primary">Who we Are</h2>
 
-                <p class="fs-4 text-info">
+                <p class="fs-5 text-info">
+                    <span class="text-zeyada fw-bold text-primary">Who we Are</span> <br/>
                     We care about your hair ...Eveniet esse saepe sequi,
                     molestiae, nihil ipsa voluptate pariatur rem obcaecati
                     nostrum

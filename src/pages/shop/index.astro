@@ -1,11 +1,9 @@
 ---
 import BreadCrumb from "@components/headers/BreadCrumb.astro";
-import CarouselHeader from "@components/headers/CarouselHeader.astro";
 import Layout from "@layouts/ELayout.astro";
 import { getCollection } from "astro:content";
 import ShopPage from "@components/products/ShopPage";
 import TopProducts from "@components/products/TopProducts.astro";
-import Header from "@components/headers/Headers.astro";
 
 const headerInfo = {
     description : "Home page for show casing many things.",
@@ -30,9 +28,6 @@ for(let x of products  ) {
 <Layout {...headerInfo}>
     
     <BreadCrumb />
-
-    <ShopPage brands={brands} categories={categories} products={list} client:load />
-    
+    <ShopPage client:only="solid" brands={brands} categories={categories} products={list} />
     <TopProducts />
-
 </Layout>

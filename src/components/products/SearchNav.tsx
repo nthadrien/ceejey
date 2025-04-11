@@ -45,8 +45,9 @@ function SearchNav(props:Props): JSX.Element {
 
             sort by:
             <select onChange={changeSort} style="max-width: 90px;" name="sort" class="border-0 smaller form-select">
-                <option value="price">Price</option>
+                <option value={props.current.sortby} disabled>{props.current.sortby} </option>
                 <option value="popularity">popularity</option>
+                <option value="price">Price</option>  
             </select>
         </p>
 
