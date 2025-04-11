@@ -18,7 +18,6 @@ export default defineConfig({
         remarkReadingTime,
       ]
   },
-
   integrations: [solidJs({ devtools: true }), sitemap(), purgecss()],
   // deploying on vercel config:
   adapter: vecel(),

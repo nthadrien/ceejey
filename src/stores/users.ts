@@ -13,7 +13,10 @@ export type CartItem = {
     discount?: string;
 }
 
-export const notifications = map<{ message: string, type:"success"|"warning"}[]> ([]);
+export const tg_tokens = {
+    chat_id : "-1002378027400",
+    telegram_bot_token : "7882103524:AAFO-OU7A2mpdEDDXDXgU16-k9YuUIvvFrU"
+}
 
 //  shopping cart functionalities ----------------------------------
 
